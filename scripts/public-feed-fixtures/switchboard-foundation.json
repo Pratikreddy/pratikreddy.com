@@ -1,0 +1,20 @@
+{
+  "generated": "2026-05-25T00:00:00Z",
+  "schema_version": "switchboard-pass1-foundation-v0",
+  "production_usage": {
+    "summary": {
+      "tool": 0,
+      "manual": 0
+    }
+  },
+  "line_noise": {
+    "active_source_ratio": "fixture"
+  },
+  "agent_handoff_quality": {
+    "quality_score": null
+  },
+  "docs_relevance": {
+    "current_count": null,
+    "enabled_count": null
+  }
+}

@@ -1,0 +1,13 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+.next/
+coverage/
+node_modules/
+.npm-cache/
+out/
+playwright-report/
+test-results/
+*.log
+*.tsbuildinfo

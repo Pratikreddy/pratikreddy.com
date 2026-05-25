@@ -1,0 +1,23 @@
+{
+  "generated": "2026-05-25",
+  "source_state_menu_reviewed_at": "2026-05-25T00:00:00Z",
+  "source_state_menu_note": "Public fixture. Live local paths must be supplied through environment variables during private local builds.",
+  "source_state_menu": [
+    {
+      "source": "Switchboard redacted projection",
+      "status": "stale/partial"
+    },
+    {
+      "source": "X archive local scraper output",
+      "status": "stale/partial"
+    },
+    {
+      "source": "Meeting extractor library",
+      "status": "ready/blocked"
+    },
+    {
+      "source": "Union Bank finance source",
+      "status": "partial/blocked"
+    }
+  ]
+}

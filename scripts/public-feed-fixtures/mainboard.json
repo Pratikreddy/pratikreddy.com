@@ -1,0 +1,17 @@
+{
+  "generated": "2026-05-25T00:00:00Z",
+  "format": "switchboard-palimpsest-state",
+  "workspaces": [
+    { "workspace_id": "personal-suite", "name": "Personal Suite" },
+    { "workspace_id": "dev-suite", "name": "Development Suite" }
+  ],
+  "services": [
+    { "service_id": "agent-ops", "display_name": "Agent Ops" },
+    { "service_id": "switchboard", "display_name": "Switchboard" },
+    { "service_id": "palimpsest", "display_name": "Palimpsest" },
+    { "service_id": "sys-docs", "display_name": "Sys Docs" },
+    { "service_id": "meeting-extractor", "display_name": "Meeting Extractor" },
+    { "service_id": "x-archive", "display_name": "X Archive" },
+    { "service_id": "union-bank-finance", "display_name": "Union Bank Finance" }
+  ]
+}

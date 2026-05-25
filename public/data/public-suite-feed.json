@@ -1,0 +1,239 @@
+{
+  "schemaVersion": "public-suite-feed-v1",
+  "generatedAt": "2026-05-25T07:09:30.801Z",
+  "identity": {
+    "name": "Pratik S Reddy",
+    "headline": "Builder of local-first AI, automation, evidence, and agentic operating systems.",
+    "links": [
+      {
+        "label": "GitHub pratikreddy9",
+        "href": "https://github.com/pratikreddy9"
+      },
+      {
+        "label": "GitHub Pratikreddy",
+        "href": "https://github.com/Pratikreddy"
+      },
+      {
+        "label": "X pratikredy",
+        "href": "https://x.com/pratikredy"
+      }
+    ]
+  },
+  "privacy": {
+    "mode": "metadata_only",
+    "summary": "This feed publishes redacted metadata, public-safe project summaries, source freshness, and suite boundaries only.",
+    "forbiddenClasses": [
+      "finance_rows",
+      "meeting_videos",
+      "meeting_transcripts",
+      "meeting_screenshots",
+      "x_raw_text",
+      "credentials",
+      "secrets",
+      "private_docs",
+      "private_costs",
+      "personal_raw_records"
+    ]
+  },
+  "statusStrip": [
+    {
+      "id": "adapter",
+      "label": "Alive adapter brick",
+      "state": "live",
+      "detail": "Generated public metadata feed from allowlisted local evidence.",
+      "asOf": "2026-05-25T07:09:30.801Z"
+    },
+    {
+      "id": "switchboard",
+      "label": "Switchboard metadata",
+      "state": "live",
+      "detail": "Foundation projection is metadata-only and git-safe.",
+      "asOf": "2026-05-25T00:00:00Z"
+    },
+    {
+      "id": "palimpsest",
+      "label": "Palimpsest sources",
+      "state": "stale",
+      "detail": "Source-state menu is used as a public boundary map, not as raw memory export.",
+      "asOf": "2026-05-25T00:00:00Z"
+    },
+    {
+      "id": "private-data",
+      "label": "Private records",
+      "state": "blocked",
+      "detail": "Sensitive source classes are blocked before UI rendering."
+    },
+    {
+      "id": "vercel",
+      "label": "Vercel deploy",
+      "state": "deferred",
+      "detail": "GitHub import and custom domain binding happen after repo push."
+    }
+  ],
+  "suiteLanes": [
+    {
+      "id": "agent-ops",
+      "name": "Agent Ops",
+      "role": "Manager memory and prompt control plane",
+      "state": "active",
+      "publicSummary": "Records CEO instructions, gates, agent handoffs, and implementation boundaries before work reaches builders.",
+      "source": "manager-private record summarized for public site",
+      "privacyBoundary": "Exact private wording stays in the manager layer.",
+      "metrics": [
+        {
+          "label": "mode",
+          "value": "manager"
+        },
+        {
+          "label": "public payload",
+          "value": "summary only"
+        }
+      ]
+    },
+    {
+      "id": "switchboard",
+      "name": "Switchboard",
+      "role": "Dev-side evidence and source-state control plane",
+      "state": "live",
+      "publicSummary": "Tracks project shape, task-ledger activity, git safety, source freshness, and release evidence without publishing private payloads.",
+      "source": "Switchboard foundation projection",
+      "privacyBoundary": "Operational counts and boundaries only.",
+      "href": "https://github.com/Pratikreddy/switchboard",
+      "metrics": [
+        {
+          "label": "tool events",
+          "value": "0"
+        },
+        {
+          "label": "manual records",
+          "value": "0"
+        },
+        {
+          "label": "active source ratio",
+          "value": "fixture"
+        }
+      ]
+    },
+    {
+      "id": "palimpsest",
+      "name": "Palimpsest",
+      "role": "Evidence normalization and source registry",
+      "state": "stale",
+      "publicSummary": "Normalizes sources into privacy-labeled evidence lanes with confidence, lineage, and freshness boundaries.",
+      "source": "Palimpsest source map",
+      "privacyBoundary": "Memory records remain local unless a future public-safe contract allows more.",
+      "metrics": [
+        {
+          "label": "source lanes",
+          "value": "4"
+        },
+        {
+          "label": "review state",
+          "value": "mapped"
+        }
+      ]
+    },
+    {
+      "id": "sys-docs",
+      "name": "Sys Docs",
+      "role": "System intelligence and documentation layer",
+      "state": "active",
+      "publicSummary": "Keeps local system maps, project docs, service facts, and confidence labels aligned with the rest of the suite.",
+      "source": "Switchboard redacted mainboard projection",
+      "privacyBoundary": "Host details and local paths are not exported.",
+      "metrics": [
+        {
+          "label": "workspaces",
+          "value": "2"
+        },
+        {
+          "label": "services",
+          "value": "7"
+        }
+      ]
+    },
+    {
+      "id": "meeting-extractor",
+      "name": "Meeting Extractor",
+      "role": "Meeting capture adapter",
+      "state": "blocked",
+      "publicSummary": "Turns local meeting recordings into structured artifacts for private review and later redacted summaries.",
+      "source": "Palimpsest source-state menu",
+      "privacyBoundary": "Meeting media, spoken content, and visual artifacts stay private.",
+      "metrics": [
+        {
+          "label": "public mode",
+          "value": "status only"
+        },
+        {
+          "label": "pipeline",
+          "value": "registered"
+        }
+      ]
+    },
+    {
+      "id": "x-archive",
+      "name": "X Archive",
+      "role": "Social/source archive adapter",
+      "state": "stale",
+      "publicSummary": "Maintains source freshness and record counts for local X archive work while omitting post and reply bodies.",
+      "source": "Palimpsest X source status",
+      "privacyBoundary": "Post and reply bodies stay out of the public feed.",
+      "metrics": [
+        {
+          "label": "files scanned",
+          "value": "0"
+        },
+        {
+          "label": "records scanned",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "id": "union-bank-finance",
+      "name": "Union Bank Finance",
+      "role": "Personal finance adapter",
+      "state": "blocked",
+      "publicSummary": "Represents the finance dashboard as a high-level project lane only, suitable for synthetic public examples later.",
+      "source": "Palimpsest source-state menu and public project seed",
+      "privacyBoundary": "Only synthetic or aggregate public examples are allowed.",
+      "href": "https://github.com/Pratikreddy/personal-finance-dashbord-for-union-bacnk-users",
+      "metrics": [
+        {
+          "label": "public mode",
+          "value": "high level"
+        },
+        {
+          "label": "sensitive details",
+          "value": "blocked"
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "switchboard",
+      "title": "Switchboard Dashboard",
+      "date": "2026",
+      "stack": "Python, FastAPI, local inventory, workflow ledger",
+      "summary": "Control-center and node-workflow dashboard for local projects, snapshots, tasks, and source-state evidence.",
+      "sourceStatus": "public-safe seed",
+      "href": "https://github.com/Pratikreddy/switchboard"
+    },
+    {
+      "id": "yt-downloader",
+      "title": "YouTube Downloader",
+      "date": "2024-2026",
+      "stack": "Python, automation, media tooling",
+      "summary": "Media automation project represented with public repository evidence only.",
+      "sourceStatus": "public-safe seed",
+      "href": "https://github.com/Pratikreddy/yt-downloader"
+    }
+  ],
+  "evidenceSummary": {
+    "handoffQualityScore": null,
+    "docsCurrent": null,
+    "docsEnabled": null
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "generated": "2026-05-25T00:00:00Z",
+  "source_health": "warn",
+  "totals": {
+    "files_scanned": 0,
+    "records_scanned": 0,
+    "new_records": 0
+  }
+}

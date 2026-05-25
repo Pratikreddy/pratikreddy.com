@@ -1,0 +1,270 @@
+#!/usr/bin/env node
+import fs from "node:fs";
+import path from "node:path";
+import vm from "node:vm";
+import { assertPublicPayloadSafe, FORBIDDEN_CLASSES } from "../src/lib/feed-guard.mjs";
+
+const OUTPUT_PATH = path.join(process.cwd(), "public", "data", "public-suite-feed.json");
+
+const FIXTURE_ROOT = path.join(process.cwd(), "scripts", "public-feed-fixtures");
+
+const LOCAL_SOURCES = {
+  switchboardFoundation:
+    process.env.PUBLIC_FEED_SWITCHBOARD_FOUNDATION || path.join(FIXTURE_ROOT, "switchboard-foundation.json"),
+  palimpsestSourceMap: process.env.PUBLIC_FEED_PALIMPSEST_SOURCE_MAP || path.join(FIXTURE_ROOT, "source-map.json"),
+  palimpsestPersonalStatus:
+    process.env.PUBLIC_FEED_PERSONAL_STATUS || path.join(FIXTURE_ROOT, "personal-source-status.json"),
+  palimpsestXStatus: process.env.PUBLIC_FEED_X_STATUS || path.join(FIXTURE_ROOT, "x-source-status.json"),
+  palimpsestSeedData: process.env.PUBLIC_FEED_PSR_SEED || path.join(FIXTURE_ROOT, "psr-data.js"),
+  switchboardMainboard: process.env.PUBLIC_FEED_SWITCHBOARD_MAINBOARD || path.join(FIXTURE_ROOT, "mainboard.json"),
+};
+
+function readJson(filePath, fallback = null) {
+  if (!fs.existsSync(filePath)) return fallback;
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch {
+    return fallback;
+  }
+}
+
+function readPsrSeed(filePath) {
+  if (!fs.existsSync(filePath)) return {};
+  const code = fs.readFileSync(filePath, "utf8");
+  const sandbox = { window: {} };
+  vm.createContext(sandbox);
+  vm.runInContext(code, sandbox, { filename: "palimpsest-website-data.js", timeout: 1000 });
+  return sandbox.window.PSR_DATA || {};
+}
+
+function daysSince(iso) {
+  if (!iso) return Number.POSITIVE_INFINITY;
+  const then = new Date(iso).getTime();
+  if (!Number.isFinite(then)) return Number.POSITIVE_INFINITY;
+  return (Date.now() - then) / 86400000;
+}
+
+function stateFromTimestamp(iso, staleAfterDays = 14) {
+  if (!iso) return "unknown";
+  return daysSince(iso) > staleAfterDays ? "stale" : "live";
+}
+
+function metric(label, value) {
+  return { label, value: String(value ?? "0") };
+}
+
+function pickSourceMenu(sourceMap, needle) {
+  const menu = Array.isArray(sourceMap?.source_state_menu) ? sourceMap.source_state_menu : [];
+  return menu.find((entry) => String(entry.source || "").toLowerCase().includes(needle));
+}
+
+function normalizeStatus(status) {
+  const value = String(status || "").toLowerCase();
+  if (value.includes("blocked")) return "blocked";
+  if (value.includes("stale")) return "stale";
+  if (value.includes("defer")) return "deferred";
+  if (value.includes("ready") || value.includes("ok")) return "active";
+  if (value.includes("partial")) return "stale";
+  return "unknown";
+}
+
+function publicProjects(seed) {
+  const projects = Array.isArray(seed.projects) ? seed.projects : [];
+  return projects
+    .filter((project) => project.exposure === "public_candidate")
+    .slice(0, 8)
+    .map((project) => ({
+      id: String(project.id),
+      title: String(project.title),
+      date: String(project.date || ""),
+      stack: String(project.stack || "Public project evidence"),
+      summary: String(project.summary || ""),
+      sourceStatus: String(project.sourceStatus || "public-safe seed"),
+      href: project.href ? String(project.href) : undefined,
+    }));
+}
+
+function buildFeed() {
+  const generatedAt = new Date().toISOString();
+  const foundation = readJson(LOCAL_SOURCES.switchboardFoundation, {});
+  const sourceMap = readJson(LOCAL_SOURCES.palimpsestSourceMap, {});
+  const personalStatus = readJson(LOCAL_SOURCES.palimpsestPersonalStatus, {});
+  const xStatus = readJson(LOCAL_SOURCES.palimpsestXStatus, {});
+  const seed = readPsrSeed(LOCAL_SOURCES.palimpsestSeedData);
+  const mainboard = readJson(LOCAL_SOURCES.switchboardMainboard, {});
+
+  const switchboardGenerated = foundation?.generated || "";
+  const sourceMapReviewed = sourceMap?.source_state_menu_reviewed_at || "";
+  const xTotals = xStatus?.totals || {};
+  const personalTotals = personalStatus?.totals || {};
+  const xMenu = pickSourceMenu(sourceMap, "x archive");
+  const switchboardMenu = pickSourceMenu(sourceMap, "switchboard");
+  const meetingMenu = pickSourceMenu(sourceMap, "meeting extractor");
+  const financeMenu = pickSourceMenu(sourceMap, "union bank");
+
+  const workspaces = Array.isArray(mainboard?.workspaces) ? mainboard.workspaces.length : 0;
+  const services = Array.isArray(mainboard?.services) ? mainboard.services.length : 0;
+  const foundationSummary = foundation?.production_usage?.summary || {};
+  const lineNoise = foundation?.line_noise || {};
+  const handoff = foundation?.agent_handoff_quality || {};
+  const docs = foundation?.docs_relevance || {};
+
+  const feed = {
+    schemaVersion: "public-suite-feed-v1",
+    generatedAt,
+    identity: {
+      name: "Pratik S Reddy",
+      headline: "Builder of local-first AI, automation, evidence, and agentic operating systems.",
+      links: [
+        { label: "GitHub pratikreddy9", href: "https://github.com/pratikreddy9" },
+        { label: "GitHub Pratikreddy", href: "https://github.com/Pratikreddy" },
+        { label: "X pratikredy", href: "https://x.com/pratikredy" },
+      ],
+    },
+    privacy: {
+      mode: "metadata_only",
+      summary: "This feed publishes redacted metadata, public-safe project summaries, source freshness, and suite boundaries only.",
+      forbiddenClasses: FORBIDDEN_CLASSES,
+    },
+    statusStrip: [
+      {
+        id: "adapter",
+        label: "Alive adapter brick",
+        state: "live",
+        detail: "Generated public metadata feed from allowlisted local evidence.",
+        asOf: generatedAt,
+      },
+      {
+        id: "switchboard",
+        label: "Switchboard metadata",
+        state: stateFromTimestamp(switchboardGenerated),
+        detail: "Foundation projection is metadata-only and git-safe.",
+        asOf: switchboardGenerated || undefined,
+      },
+      {
+        id: "palimpsest",
+        label: "Palimpsest sources",
+        state: normalizeStatus(sourceMap?.source_state_menu?.some ? "stale/partial" : "unknown"),
+        detail: "Source-state menu is used as a public boundary map, not as raw memory export.",
+        asOf: sourceMapReviewed || undefined,
+      },
+      {
+        id: "private-data",
+        label: "Private records",
+        state: "blocked",
+        detail: "Sensitive source classes are blocked before UI rendering.",
+      },
+      {
+        id: "vercel",
+        label: "Vercel deploy",
+        state: "deferred",
+        detail: "GitHub import and custom domain binding happen after repo push.",
+      },
+    ],
+    suiteLanes: [
+      {
+        id: "agent-ops",
+        name: "Agent Ops",
+        role: "Manager memory and prompt control plane",
+        state: "active",
+        publicSummary:
+          "Records CEO instructions, gates, agent handoffs, and implementation boundaries before work reaches builders.",
+        source: "manager-private record summarized for public site",
+        privacyBoundary: "Exact private wording stays in the manager layer.",
+        metrics: [metric("mode", "manager"), metric("public payload", "summary only")],
+      },
+      {
+        id: "switchboard",
+        name: "Switchboard",
+        role: "Dev-side evidence and source-state control plane",
+        state: stateFromTimestamp(switchboardGenerated),
+        publicSummary:
+          "Tracks project shape, task-ledger activity, git safety, source freshness, and release evidence without publishing private payloads.",
+        source: "Switchboard foundation projection",
+        privacyBoundary: "Operational counts and boundaries only.",
+        href: "https://github.com/Pratikreddy/switchboard",
+        metrics: [
+          metric("tool events", foundationSummary.tool ?? 0),
+          metric("manual records", foundationSummary.manual ?? 0),
+          metric("active source ratio", lineNoise.active_source_ratio ?? "n/a"),
+        ],
+      },
+      {
+        id: "palimpsest",
+        name: "Palimpsest",
+        role: "Evidence normalization and source registry",
+        state: normalizeStatus(sourceMap?.source_state_menu_note ? "stale/partial" : "unknown"),
+        publicSummary:
+          "Normalizes sources into privacy-labeled evidence lanes with confidence, lineage, and freshness boundaries.",
+        source: "Palimpsest source map",
+        privacyBoundary: "Memory records remain local unless a future public-safe contract allows more.",
+        metrics: [
+          metric("source lanes", Array.isArray(sourceMap?.source_state_menu) ? sourceMap.source_state_menu.length : 0),
+          metric("review state", sourceMap?.source_state_menu_note ? "mapped" : "unknown"),
+        ],
+      },
+      {
+        id: "sys-docs",
+        name: "Sys Docs",
+        role: "System intelligence and documentation layer",
+        state: services > 0 ? "active" : "unknown",
+        publicSummary:
+          "Keeps local system maps, project docs, service facts, and confidence labels aligned with the rest of the suite.",
+        source: "Switchboard redacted mainboard projection",
+        privacyBoundary: "Host details and local paths are not exported.",
+        metrics: [metric("workspaces", workspaces), metric("services", services)],
+      },
+      {
+        id: "meeting-extractor",
+        name: "Meeting Extractor",
+        role: "Meeting capture adapter",
+        state: normalizeStatus(meetingMenu?.status || "blocked"),
+        publicSummary:
+          "Turns local meeting recordings into structured artifacts for private review and later redacted summaries.",
+        source: "Palimpsest source-state menu",
+        privacyBoundary: "Meeting media, spoken content, and visual artifacts stay private.",
+        metrics: [metric("public mode", "status only"), metric("pipeline", meetingMenu ? "registered" : "not found")],
+      },
+      {
+        id: "x-archive",
+        name: "X Archive",
+        role: "Social/source archive adapter",
+        state: normalizeStatus(xMenu?.status || xStatus?.source_health || "stale"),
+        publicSummary:
+          "Maintains source freshness and record counts for local X archive work while omitting post and reply bodies.",
+        source: "Palimpsest X source status",
+        privacyBoundary: "Post and reply bodies stay out of the public feed.",
+        metrics: [
+          metric("files scanned", xTotals.files_scanned ?? personalTotals.files_scanned ?? 0),
+          metric("records scanned", xTotals.records_scanned ?? personalTotals.records_scanned ?? 0),
+        ],
+      },
+      {
+        id: "union-bank-finance",
+        name: "Union Bank Finance",
+        role: "Personal finance adapter",
+        state: normalizeStatus(financeMenu?.status || "blocked"),
+        publicSummary:
+          "Represents the finance dashboard as a high-level project lane only, suitable for synthetic public examples later.",
+        source: "Palimpsest source-state menu and public project seed",
+        privacyBoundary: "Only synthetic or aggregate public examples are allowed.",
+        href: "https://github.com/Pratikreddy/personal-finance-dashbord-for-union-bacnk-users",
+        metrics: [metric("public mode", "high level"), metric("sensitive details", "blocked")],
+      },
+    ],
+    projects: publicProjects(seed),
+    evidenceSummary: {
+      handoffQualityScore: handoff.quality_score ?? null,
+      docsCurrent: docs.current_count ?? null,
+      docsEnabled: docs.enabled_count ?? null,
+    },
+  };
+
+  assertPublicPayloadSafe(feed);
+  return feed;
+}
+
+const feed = buildFeed();
+fs.mkdirSync(path.dirname(OUTPUT_PATH), { recursive: true });
+fs.writeFileSync(OUTPUT_PATH, `${JSON.stringify(feed, null, 2)}\n`, "utf8");
+console.log(`public suite feed written: ${OUTPUT_PATH}`);
