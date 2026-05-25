@@ -79,6 +79,21 @@ export type PublicProofItem = {
   redactionNote: string;
 };
 
+export type PublicResumeHighlight = {
+  id: string;
+  title: string;
+  detail: string;
+  year: string;
+  kind: "education" | "work" | "ai" | "systems" | "football";
+};
+
+export type PublicAiWork = {
+  id: string;
+  title: string;
+  summary: string;
+  href?: string;
+};
+
 export type PublicMediaCandidate = {
   id: string;
   title: string;
@@ -118,6 +133,8 @@ export type PublicSuiteFeedV1 = {
   timeline: PublicTimelineItem[];
   education: PublicEducationItem[];
   proofItems: PublicProofItem[];
+  resumeHighlights: PublicResumeHighlight[];
+  aiWork: PublicAiWork[];
   mediaCandidates: PublicMediaCandidate[];
   suiteLanes: PublicSuiteLane[];
   projects: PublicProjectCard[];

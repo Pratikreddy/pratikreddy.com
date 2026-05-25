@@ -173,6 +173,27 @@ function publicProofItems(seed) {
   }));
 }
 
+function publicResumeHighlights(seed) {
+  const highlights = Array.isArray(seed.resumeHighlights) ? seed.resumeHighlights : [];
+  return highlights.slice(0, 8).map((item) => ({
+    id: String(item.id),
+    title: String(item.title),
+    detail: String(item.detail || ""),
+    year: String(item.year || ""),
+    kind: String(item.kind || "systems"),
+  }));
+}
+
+function publicAiWork(seed) {
+  const items = Array.isArray(seed.aiWork) ? seed.aiWork : [];
+  return items.slice(0, 8).map((item) => ({
+    id: String(item.id),
+    title: String(item.title),
+    summary: String(item.summary || ""),
+    href: item.href ? String(item.href) : undefined,
+  }));
+}
+
 function publicMediaCandidates(seed) {
   const media = Array.isArray(seed.mediaCandidates) ? seed.mediaCandidates : Array.isArray(seed.media) ? seed.media : [];
   return media.slice(0, 8).map((item) => ({
@@ -295,6 +316,8 @@ function buildFeed() {
     timeline: publicTimeline(seed),
     education: publicEducation(seed),
     proofItems: publicProofItems(seed),
+    resumeHighlights: publicResumeHighlights(seed),
+    aiWork: publicAiWork(seed),
     mediaCandidates: publicMediaCandidates(seed),
     suiteLanes: [
       {

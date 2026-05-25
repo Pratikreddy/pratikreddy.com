@@ -194,6 +194,69 @@ window.PSR_DATA = {
       redactionNote: "Only public metadata is emitted.",
     },
   ],
+  resumeHighlights: [
+    {
+      id: "bba-pes",
+      title: "BBA",
+      detail: "PES University",
+      year: "2020",
+      kind: "education",
+    },
+    {
+      id: "mba-iup",
+      title: "MBA",
+      detail: "Indiana University of Pennsylvania",
+      year: "2021",
+      kind: "education",
+    },
+    {
+      id: "aiff-d",
+      title: "AIFF D",
+      detail: "Football coaching credential",
+      year: "2021",
+      kind: "football",
+    },
+    {
+      id: "ai-chatbots",
+      title: "AI chatbots",
+      detail: "Gemini, OpenAI, RAG, LLM query, and chat API experiments",
+      year: "2024-2026",
+      kind: "ai",
+    },
+    {
+      id: "agentic-suite",
+      title: "Agentic suite",
+      detail: "Agent Ops, Switchboard, Palimpsest, public adapter gate",
+      year: "2026",
+      kind: "systems",
+    },
+  ],
+  aiWork: [
+    {
+      id: "geminichat",
+      title: "Gemini Chat",
+      summary: "Streamlit chatbot powered by Gemini Pro and Gemini Pro Vision.",
+      href: "https://github.com/Pratikreddy/geminichat",
+    },
+    {
+      id: "llmquerybot",
+      title: "LLM Query Bot",
+      summary: "Public LLM query bot experiment from the AI tooling archive.",
+      href: "https://github.com/Pratikreddy/llmquerybot",
+    },
+    {
+      id: "ai-chat",
+      title: "AI Chat API",
+      summary: "Session-aware AI chat and RAG backend family represented as public metadata.",
+      href: "https://github.com/Pratikreddy/ai-chat",
+    },
+    {
+      id: "openai-api",
+      title: "OpenAI API Tests",
+      summary: "Public experiments and scripts for OpenAI API usage.",
+      href: "https://github.com/Pratikreddy/openai-api",
+    },
+  ],
   mediaCandidates: [
     {
       id: "football-coaching",

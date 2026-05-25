@@ -3,6 +3,7 @@ import {
   type PublicConfirmationStatus,
   type PublicStatusState,
 } from "@/lib/public-suite-feed";
+import { ChatWidget } from "./chat-widget";
 
 function statusClass(state: PublicStatusState) {
   return `status-pill status-${state}`;
@@ -22,6 +23,7 @@ export default async function Home() {
   const feed = await readPublicSuiteFeed();
   const confirmedEducation = feed.education.filter((item) => item.confirmationStatus === "confirmed");
   const reviewItems = feed.timeline.filter((item) => item.confirmationStatus !== "confirmed");
+  const streamTimeline = [...feed.timeline, ...feed.timeline];
   const generatedAt = new Date(feed.generatedAt).toLocaleDateString("en-IN", {
     day: "2-digit",
     month: "short",
@@ -37,6 +39,14 @@ export default async function Home() {
             <h1 id="site-title">{feed.identity.name}</h1>
             <p className="hero-title">{feed.copyBlocks.heroTitle}</p>
             <p className="hero-body">{feed.copyBlocks.heroBody}</p>
+            <div className="hero-resume-mini" aria-label="Resume snapshot">
+              {feed.resumeHighlights.slice(0, 3).map((item) => (
+                <span key={item.id}>
+                  <strong>{item.year}</strong>
+                  {item.title}
+                </span>
+              ))}
+            </div>
             <div className="hero-links" aria-label="Public links">
               {feed.identity.links.map((link) => (
                 <a key={link.href} href={link.href}>
@@ -79,6 +89,36 @@ export default async function Home() {
               </div>
             </dl>
           </aside>
+        </div>
+      </section>
+
+      <section className="section-shell resume-top" aria-labelledby="resume-title">
+        <div className="section-head">
+          <div>
+            <p className="eyebrow">Resume first</p>
+            <h2 id="resume-title">Public resume snapshot.</h2>
+          </div>
+          <p className="section-note">
+            Education, football proof, AI/chatbot work, and the current agentic systems layer. Private documents stay
+            out.
+          </p>
+        </div>
+        <div className="resume-grid">
+          {feed.resumeHighlights.map((item) => (
+            <article key={item.id} className={`resume-card resume-${item.kind}`}>
+              <span>{item.year}</span>
+              <h3>{item.title}</h3>
+              <p>{item.detail}</p>
+            </article>
+          ))}
+        </div>
+        <div className="ai-work-row" aria-label="Public AI and chatbot work">
+          {feed.aiWork.map((item) => (
+            <a key={item.id} href={item.href}>
+              <strong>{item.title}</strong>
+              <span>{item.summary}</span>
+            </a>
+          ))}
         </div>
       </section>
 
@@ -221,6 +261,29 @@ export default async function Home() {
         </div>
       </section>
 
+      <section className="stream-section" aria-labelledby="stream-title">
+        <div className="section-shell">
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">Streaming timeline</p>
+              <h2 id="stream-title">Year by year, left to right.</h2>
+            </div>
+            <p className="section-note">Only public-safe date and milestone metadata. No raw private records.</p>
+          </div>
+          <div className="stream-window" aria-label="Moving public timeline">
+            <div className="stream-rail">
+              {streamTimeline.map((item, index) => (
+                <article key={`${item.id}-${index}`} className="stream-card">
+                  <time>{item.date}</time>
+                  <strong>{item.title}</strong>
+                  <span>{item.lane}</span>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="privacy-band" aria-labelledby="privacy-title">
         <div>
           <p className="eyebrow">Public data contract</p>
@@ -234,6 +297,7 @@ export default async function Home() {
           ))}
         </div>
       </section>
+      <ChatWidget resumeHighlights={feed.resumeHighlights} timeline={feed.timeline} aiWork={feed.aiWork} />
     </main>
   );
 }

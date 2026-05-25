@@ -38,6 +38,10 @@ describe("public suite feed", () => {
       expect.arrayContaining(["PES University", "Indiana University of Pennsylvania"]),
     );
     expect(feed.proofItems.length).toBeGreaterThanOrEqual(1);
+    expect(feed.resumeHighlights.map((item) => item.id)).toEqual(
+      expect.arrayContaining(["bba-pes", "mba-iup", "ai-chatbots"]),
+    );
+    expect(feed.aiWork.map((item) => item.id)).toEqual(expect.arrayContaining(["geminichat", "llmquerybot"]));
     expect(feed.suiteLanes.map((lane) => lane.id)).toEqual(
       expect.arrayContaining([
         "agent-ops",
