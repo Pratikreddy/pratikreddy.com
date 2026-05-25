@@ -1,6 +1,6 @@
 {
   "schemaVersion": "public-suite-feed-v1",
-  "generatedAt": "2026-05-25T07:09:30.801Z",
+  "generatedAt": "2026-05-25T07:34:35.676Z",
   "identity": {
     "name": "Pratik S Reddy",
     "headline": "Builder of local-first AI, automation, evidence, and agentic operating systems.",
@@ -41,7 +41,7 @@
       "label": "Alive adapter brick",
       "state": "live",
       "detail": "Generated public metadata feed from allowlisted local evidence.",
-      "asOf": "2026-05-25T07:09:30.801Z"
+      "asOf": "2026-05-25T07:34:35.676Z"
     },
     {
       "id": "switchboard",

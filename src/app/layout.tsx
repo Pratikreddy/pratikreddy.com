@@ -4,18 +4,33 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://pratikreddy.com"),
   title: {
-    default: "Pratik S Reddy",
+    default: "Pratik S Reddy | Agentic Systems + Operations",
     template: "%s | Pratik S Reddy",
   },
   description:
-    "Public metadata surface for Pratik S Reddy's local-first AI, automation, evidence, and agentic suite.",
+    "Portfolio of Pratik S Reddy, building agentic systems, automation, local-first evidence, and operations tools.",
   openGraph: {
-    title: "Pratik S Reddy",
+    title: "Pratik S Reddy | Agentic Systems + Operations",
     description:
-      "Public metadata surface for local-first AI, automation, evidence, and agentic suite work.",
+      "Portfolio of Pratik S Reddy, building agentic systems, automation, local-first evidence, and operations tools.",
     url: "https://pratikreddy.com",
     siteName: "pratikreddy.com",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Pratik S Reddy | Agentic Systems + Operations",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pratik S Reddy | Agentic Systems + Operations",
+    description:
+      "Portfolio of Pratik S Reddy, building agentic systems, automation, local-first evidence, and operations tools.",
+    images: ["/twitter-image"],
   },
 };
 

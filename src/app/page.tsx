@@ -4,17 +4,78 @@ function statusClass(state: PublicStatusState) {
   return `status-pill status-${state}`;
 }
 
+const statusOrder: PublicStatusState[] = ["live", "active", "stale", "blocked", "deferred", "unknown"];
+
 export default async function Home() {
   const feed = await readPublicSuiteFeed();
+  const statusCounts = feed.statusStrip.reduce(
+    (counts, item) => {
+      counts[item.state] += 1;
+      return counts;
+    },
+    {
+      live: 0,
+      active: 0,
+      stale: 0,
+      blocked: 0,
+      deferred: 0,
+      unknown: 0,
+    } satisfies Record<PublicStatusState, number>,
+  );
+  const generatedAt = new Date(feed.generatedAt).toLocaleDateString("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
 
   return (
     <main>
       <section className="hero" aria-labelledby="site-title">
         <div className="hero-inner">
-          <div className="hero-copy">
-            <p className="eyebrow">pratikreddy.com / public suite feed</p>
-            <h1 id="site-title">{feed.identity.name}</h1>
-            <p className="lede">{feed.identity.headline}</p>
+          <article className="share-preview" aria-label="pratikreddy.com public preview card">
+            <div className="preview-art">
+              <div className="preview-copy">
+                <p>PRATIK S REDDY</p>
+                <h1 id="site-title">
+                  <span>Agentic Systems</span>
+                  <span>+ Operations</span>
+                </h1>
+                <div className="title-rule" aria-hidden="true" />
+              </div>
+              <div className="identity-badge">
+                <img src="https://github.com/Pratikreddy.png" alt="Pratik S Reddy public profile avatar" />
+                <span>public identity</span>
+              </div>
+            </div>
+            <div className="preview-body">
+              <h2>Pratik S Reddy | Agentic Systems + Operations</h2>
+              <p>
+                Portfolio of Pratik S Reddy, building agentic systems, automation, local-first evidence, and operations
+                tools.
+              </p>
+              <div className="domain-row">
+                <a href="https://pratikreddy.com">pratikreddy.com</a>
+                <span>{feed.privacy.mode.replaceAll("_", " ")} gate</span>
+              </div>
+            </div>
+          </article>
+
+          <aside className="hero-panel" aria-label="Public suite summary">
+            <p className="eyebrow">Public suite feed</p>
+            <h2>{feed.identity.headline}</h2>
+            <div className="hero-status-list" aria-label="Freshness summary">
+              {statusOrder
+                .filter((state) => statusCounts[state] > 0)
+                .map((state) => (
+                  <span key={state} className={statusClass(state)}>
+                    {state} {statusCounts[state]}
+                  </span>
+                ))}
+            </div>
+            <p className="boundary-note">
+              The site shows redacted metadata lanes only. Raw private records, transcripts, screenshots, credentials,
+              and finance rows stay blocked.
+            </p>
             <div className="link-row" aria-label="Public profiles">
               {feed.identity.links.map((link) => (
                 <a key={link.href} href={link.href}>
@@ -22,14 +83,11 @@ export default async function Home() {
                 </a>
               ))}
             </div>
-          </div>
-          <div className="portrait-panel" aria-label="Public identity image">
-            <img src="https://github.com/Pratikreddy.png" alt="Pratik S Reddy public profile avatar" />
-            <div>
-              <span>Adapter</span>
-              <strong>{feed.privacy.mode.replace("_", " ")}</strong>
+            <div className="feed-stamp">
+              <span>Feed generated</span>
+              <strong>{generatedAt}</strong>
             </div>
-          </div>
+          </aside>
         </div>
       </section>
 
