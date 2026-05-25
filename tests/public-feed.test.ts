@@ -81,4 +81,15 @@ describe("public suite feed", () => {
     expect(payload.schemaVersion).toBe("public-suite-feed-v1");
     expect(payload.suiteLanes.length).toBeGreaterThanOrEqual(7);
   });
+
+  it("keeps the homepage identity strip as three bands", () => {
+    const pageSource = readFileSync(path.join(repoRoot, "src", "app", "page.tsx"), "utf8");
+
+    expect(pageSource).toContain('aria-label="Education"');
+    expect(pageSource).toContain('aria-label="Job"');
+    expect(pageSource).toContain('aria-label="Socials"');
+    expect(pageSource).toContain('["bba-pes", "mba-iup"]');
+    expect(pageSource).toContain('["eox-vantage", "ayotta"]');
+    expect(pageSource).not.toContain("ai-chatbots\", \"agentic-suite");
+  });
 });

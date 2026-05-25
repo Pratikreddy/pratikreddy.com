@@ -3,9 +3,8 @@ import { ChatWidget } from "./chat-widget";
 
 export default async function Home() {
   const feed = await readPublicSuiteFeed();
-  const resumeItems = feed.resumeHighlights.filter((item) =>
-    ["bba-pes", "mba-iup", "eox-vantage", "ayotta", "ai-chatbots", "agentic-suite"].includes(item.id),
-  );
+  const educationItems = feed.resumeHighlights.filter((item) => ["bba-pes", "mba-iup"].includes(item.id));
+  const jobItems = feed.resumeHighlights.filter((item) => ["eox-vantage", "ayotta"].includes(item.id));
   const timelineRail = [...feed.timeline, ...feed.timeline];
   const suiteRail = [...feed.suiteLanes, ...feed.suiteLanes];
 
@@ -14,20 +13,39 @@ export default async function Home() {
       <section className="hero" aria-labelledby="site-title">
         <div className="hero-inner">
           <h1 id="site-title">Pratik</h1>
-          <div className="resume-line" aria-label="Resume">
-            {resumeItems.map((item) => (
-              <span key={item.id}>
-                <strong>{item.title}</strong>
-                <em>{item.year}</em>
-              </span>
-            ))}
-          </div>
-          <div className="link-line" aria-label="Public links">
-            {feed.identity.links.map((link) => (
-              <a key={link.href} href={link.href}>
-                {link.label.replace("GitHub ", "")}
-              </a>
-            ))}
+          <div className="identity-bands" aria-label="Resume and links">
+            <div className="identity-band" aria-label="Education">
+              <span className="band-label">Education</span>
+              <div className="band-items">
+                {educationItems.map((item) => (
+                  <span key={item.id}>
+                    <strong>{item.title}</strong>
+                    <em>{item.year}</em>
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="identity-band" aria-label="Job">
+              <span className="band-label">Job</span>
+              <div className="band-items">
+                {jobItems.map((item) => (
+                  <span key={item.id}>
+                    <strong>{item.title}</strong>
+                    <em>{item.year}</em>
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="identity-band identity-band-socials" aria-label="Socials">
+              <span className="band-label">Socials</span>
+              <div className="band-items">
+                {feed.identity.links.map((link) => (
+                  <a key={link.href} href={link.href}>
+                    {link.label.replace("GitHub ", "")}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
