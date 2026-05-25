@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Prateek";
+export const alt = "Pratik";
 export const size = {
   width: 1200,
   height: 630,
@@ -74,7 +74,7 @@ export default function Image() {
                 letterSpacing: 8,
               }}
             >
-              PRATEEK
+              PRATIK
             </div>
             <div
               style={{
@@ -95,7 +95,7 @@ export default function Image() {
                 }}
               >
                 <span>Resume</span>
-                <span>+ Agents</span>
+                <span>+ Suite</span>
               </div>
               <div
                 style={{
@@ -118,8 +118,8 @@ export default function Image() {
                 fontWeight: 800,
               }}
             >
-              <span>BBA / MBA / EOX / Ayotta</span>
-              <span style={{ color: "#31c48d" }}>agents / teams / swarms</span>
+              <span>BBA / MBA / EOX / Ayotta current</span>
+              <span style={{ color: "#31c48d" }}>timeline</span>
             </div>
           </div>
         </div>

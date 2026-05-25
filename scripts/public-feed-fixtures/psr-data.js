@@ -1,13 +1,12 @@
 window.PSR_DATA = {
   copyBlocks: {
-    heroKicker: "Prateek",
+    heroKicker: "Pratik",
     heroTitle: "Resume, timeline, agents.",
-    heroBody:
-      "BBA, MBA, work, code, and an agentic suite for teaming agents.",
-    thesis: "Agents, teams, and swarms need a practical operating layer.",
+    heroBody: "BBA, MBA, work, code, and a suite rail.",
+    thesis: "Resume, suite, and timeline on one public surface.",
     educationIntro: "BBA and MBA.",
     agenticSuiteIntro:
-      "Agent Ops, Switchboard, Palimpsest, and adapters are my current layer for working with agent teams.",
+      "Agent Ops, Switchboard, Palimpsest, and adapters are the suite layer.",
     privacyIntro:
       "The public site shows selected metadata only. Raw marks, IDs, scans, offer letters, finance rows, meeting media, and private notes stay out.",
   },
@@ -231,8 +230,8 @@ window.PSR_DATA = {
     {
       id: "ayotta",
       title: "Ayotta",
-      detail: "Work milestone",
-      year: "2024-2025",
+      detail: "Current role",
+      year: "2024-current",
       kind: "work",
     },
     {

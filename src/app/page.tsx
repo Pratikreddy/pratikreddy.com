@@ -13,7 +13,7 @@ export default async function Home() {
     <main>
       <section className="hero" aria-labelledby="site-title">
         <div className="hero-inner">
-          <h1 id="site-title">Prateek</h1>
+          <h1 id="site-title">Pratik</h1>
           <div className="resume-line" aria-label="Resume">
             {resumeItems.map((item) => (
               <span key={item.id}>
@@ -32,20 +32,9 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="agent-section" aria-labelledby="agents-title">
-        <h2 id="agents-title">Agents</h2>
-        <p>Use them. Team them. Build swarms. My layer is Agent Ops, Switchboard, Palimpsest, and adapters.</p>
-        <div className="agent-words" aria-label="Agent discussion themes">
-          <span>Agents</span>
-          <span>Teams</span>
-          <span>Swarms</span>
-          <span>Layer</span>
-        </div>
-      </section>
-
       <section className="rail-section" aria-labelledby="suite-title">
         <h2 id="suite-title">Suite</h2>
-        <div className="rail-window">
+        <div className="rail-window" tabIndex={0} aria-label="Suite scroller">
           <div className="rail rail-suite">
             {suiteRail.map((lane, index) =>
               lane.href ? (
@@ -66,7 +55,7 @@ export default async function Home() {
 
       <section className="rail-section timeline-only" aria-labelledby="timeline-title">
         <h2 id="timeline-title">Timeline</h2>
-        <div className="rail-window">
+        <div className="rail-window" tabIndex={0} aria-label="Timeline scroller">
           <div className="rail rail-timeline">
             {timelineRail.map((item, index) => (
               <article key={`${item.id}-${index}`} className="rail-card timeline-card">

@@ -49,7 +49,6 @@ main {
 }
 
 .hero,
-.agent-section,
 .rail-section {
   width: min(1160px, calc(100vw - 32px));
   margin: 0 auto;
@@ -130,40 +129,8 @@ h2 {
   content: ">";
 }
 
-.agent-section,
 .rail-section {
   padding: 46px 0;
-}
-
-.agent-section {
-  display: grid;
-  grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
-  gap: 22px;
-  align-items: end;
-  border-top: 1px solid var(--line);
-}
-
-.agent-section p {
-  margin-bottom: 0;
-  color: var(--muted);
-  font-size: clamp(1.2rem, 2.5vw, 2.25rem);
-  font-weight: 850;
-  line-height: 1.08;
-}
-
-.agent-words {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.agent-words span {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 10px 14px;
-  background: rgba(255, 255, 255, 0.06);
-  font-weight: 900;
 }
 
 .rail-card {
@@ -182,10 +149,15 @@ h2 {
 
 .rail-window {
   position: relative;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(7, 9, 8, 0.76);
+  scrollbar-color: rgba(51, 211, 154, 0.8) rgba(255, 255, 255, 0.06);
 }
 
 .rail-window::before,
@@ -221,12 +193,20 @@ h2 {
   animation-duration: 36s;
 }
 
+.rail-window:hover .rail,
+.rail-window:focus .rail,
+.rail-window:focus-within .rail,
+.rail-window:active .rail {
+  animation-play-state: paused;
+}
+
 .rail-card {
   width: 230px;
   flex: 0 0 auto;
   display: grid;
   gap: 8px;
   padding: 14px;
+  scroll-snap-align: start;
 }
 
 .rail-card strong {
@@ -343,7 +323,6 @@ h2 {
 
 @media (max-width: 640px) {
   .hero,
-  .agent-section,
   .rail-section {
     width: min(100%, calc(100vw - 24px));
   }
@@ -361,10 +340,6 @@ h2 {
   .link-line a {
     width: 100%;
     justify-content: space-between;
-  }
-
-  .agent-section {
-    grid-template-columns: 1fr;
   }
 
   .rail-window::before,

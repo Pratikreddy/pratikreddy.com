@@ -1,10 +1,10 @@
 {
   "schemaVersion": "public-suite-feed-v1",
-  "generatedAt": "2026-05-25T18:44:28.437Z",
+  "generatedAt": "2026-05-25T18:52:53.788Z",
   "identity": {
-    "name": "Prateek",
+    "name": "Pratik",
     "headline": "Resume, timeline, and agentic systems.",
-    "bioShort": "I build with agents, teams of agents, and adapters that decide what reaches the public layer.",
+    "bioShort": "I build systems, adapters, and a public-safe suite layer.",
     "bioLong": "The public site keeps the surface simple: resume signal, timeline milestones, and the agentic suite layer.",
     "locationPublic": "Bangalore / systems work",
     "links": [
@@ -23,12 +23,12 @@
     ]
   },
   "copyBlocks": {
-    "heroKicker": "Prateek",
+    "heroKicker": "Pratik",
     "heroTitle": "Resume, timeline, agents.",
-    "heroBody": "BBA, MBA, work, code, and an agentic suite for teaming agents.",
-    "thesis": "Agents, teams, and swarms need a practical operating layer.",
+    "heroBody": "BBA, MBA, work, code, and a suite rail.",
+    "thesis": "Resume, suite, and timeline on one public surface.",
     "educationIntro": "BBA and MBA.",
-    "agenticSuiteIntro": "Agent Ops, Switchboard, Palimpsest, and adapters are my current layer for working with agent teams.",
+    "agenticSuiteIntro": "Agent Ops, Switchboard, Palimpsest, and adapters are the suite layer.",
     "privacyIntro": "The public site shows selected metadata only. Raw marks, IDs, scans, offer letters, finance rows, meeting media, and private notes stay out."
   },
   "privacy": {
@@ -53,7 +53,7 @@
       "label": "Alive adapter brick",
       "state": "live",
       "detail": "Generated public metadata feed from allowlisted local evidence.",
-      "asOf": "2026-05-25T18:44:28.437Z"
+      "asOf": "2026-05-25T18:52:53.788Z"
     },
     {
       "id": "switchboard",
@@ -297,8 +297,8 @@
     {
       "id": "ayotta",
       "title": "Ayotta",
-      "detail": "Work milestone",
-      "year": "2024-2025",
+      "detail": "Current role",
+      "year": "2024-current",
       "kind": "work"
     },
     {
