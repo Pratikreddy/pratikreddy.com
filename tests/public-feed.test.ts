@@ -33,14 +33,17 @@ describe("public suite feed", () => {
     expect(feed.lifeTracks.map((track) => track.id)).toEqual(
       expect.arrayContaining(["education", "football", "clothing", "farming", "systems"]),
     );
-    expect(feed.timeline.some((item) => item.title.includes("Bachelor"))).toBe(true);
+    expect(feed.timeline.some((item) => item.title === "BBA" && item.displayDetail === "PESU")).toBe(true);
+    expect(feed.timeline.some((item) => item.title === "MBA" && item.displayDetail === "IUP")).toBe(true);
+    expect(JSON.stringify(feed).toLowerCase()).not.toContain("preschool");
     expect(feed.education.map((item) => item.institution)).toEqual(
-      expect.arrayContaining(["PES University", "Indiana University of Pennsylvania"]),
+      expect.arrayContaining(["DPS", "Amaatra", "PESU", "IUP"]),
     );
-    expect(feed.proofItems.length).toBeGreaterThanOrEqual(1);
+    expect(feed.proofItems.filter((item) => item.imageHref).length).toBeGreaterThanOrEqual(3);
     expect(feed.resumeHighlights.map((item) => item.id)).toEqual(
-      expect.arrayContaining(["bba-pes", "mba-iup", "ai-chatbots"]),
+      expect.arrayContaining(["bba-pes", "mba-iup", "ayotta"]),
     );
+    expect(feed.resumeHighlights.map((item) => item.id)).not.toContain("ai-chatbots");
     expect(feed.aiWork.map((item) => item.id)).toEqual(expect.arrayContaining(["geminichat", "llmquerybot"]));
     expect(feed.suiteLanes.map((lane) => lane.id)).toEqual(
       expect.arrayContaining([
@@ -90,6 +93,10 @@ describe("public suite feed", () => {
     expect(pageSource).toContain('aria-label="Socials"');
     expect(pageSource).toContain('["bba-pes", "mba-iup"]');
     expect(pageSource).toContain('["eox-vantage", "ayotta"]');
-    expect(pageSource).not.toContain("ai-chatbots\", \"agentic-suite");
+    expect(pageSource.indexOf("timeline-title")).toBeLessThan(pageSource.indexOf("suite-title"));
+    expect(pageSource).toContain("<TimelineRail");
+    expect(pageSource).not.toContain("AI work");
+    expect(pageSource).not.toContain("{item.lane}");
+    expect(pageSource).not.toContain("{lane.state}");
   });
 });

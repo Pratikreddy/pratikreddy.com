@@ -1,11 +1,11 @@
 {
   "schemaVersion": "public-suite-feed-v1",
-  "generatedAt": "2026-05-25T18:52:53.788Z",
+  "generatedAt": "2026-05-25T19:33:59.980Z",
   "identity": {
     "name": "Pratik",
-    "headline": "Resume, timeline, and agentic systems.",
+    "headline": "Resume, timeline, and personal systems.",
     "bioShort": "I build systems, adapters, and a public-safe suite layer.",
-    "bioLong": "The public site keeps the surface simple: resume signal, timeline milestones, and the agentic suite layer.",
+    "bioLong": "The public site keeps the surface simple: resume signal, timeline milestones, and the personal suite layer.",
     "locationPublic": "Bangalore / systems work",
     "links": [
       {
@@ -53,7 +53,7 @@
       "label": "Alive adapter brick",
       "state": "live",
       "detail": "Generated public metadata feed from allowlisted local evidence.",
-      "asOf": "2026-05-25T18:52:53.788Z"
+      "asOf": "2026-05-25T19:33:59.980Z"
     },
     {
       "id": "switchboard",
@@ -88,7 +88,7 @@
       "title": "Education",
       "label": "School, BBA, MBA",
       "status": "confirmed metadata",
-      "summary": "Education milestones from school in Bangalore through PES University and an MBA, with private marks and documents excluded.",
+      "summary": "Education milestones from DPS, Amaatra, PESU, and IUP, with private marks and documents excluded.",
       "confirmationStatus": "confirmed"
     },
     {
@@ -130,7 +130,8 @@
       "date": "2014",
       "lane": "education",
       "title": "Grade 10",
-      "publicSummary": "Secondary school milestone in Bangalore, shown without marks, IDs, or raw documents.",
+      "displayDetail": "DPS",
+      "publicSummary": "Secondary school milestone shown without marks, IDs, or raw documents.",
       "confidence": "year-level",
       "confirmationStatus": "confirmed"
     },
@@ -138,8 +139,9 @@
       "id": "grade-12",
       "date": "2016",
       "lane": "education",
-      "title": "Grade 12 / Pre-University",
-      "publicSummary": "Pre-university education milestone, kept to public wording only.",
+      "title": "Grade 12",
+      "displayDetail": "Amaatra",
+      "publicSummary": "High school milestone, kept to public wording only.",
       "confidence": "year-level",
       "confirmationStatus": "confirmed"
     },
@@ -147,8 +149,9 @@
       "id": "bba",
       "date": "2017-2020",
       "lane": "education",
-      "title": "Bachelor of Business Administration",
-      "publicSummary": "Business education period at PES University.",
+      "title": "BBA",
+      "displayDetail": "PESU",
+      "publicSummary": "Business education period at PESU.",
       "confidence": "year-level",
       "confirmationStatus": "confirmed"
     },
@@ -156,7 +159,8 @@
       "id": "mba",
       "date": "2020-2021",
       "lane": "education",
-      "title": "Master of Business Administration",
+      "title": "MBA",
+      "displayDetail": "IUP",
       "publicSummary": "MBA period recorded in the credential evidence layer.",
       "confidence": "year-level",
       "confirmationStatus": "confirmed"
@@ -192,8 +196,8 @@
       "id": "current-suite",
       "date": "2026",
       "lane": "systems",
-      "title": "Evidence and agentic suite",
-      "publicSummary": "Agent Ops, Switchboard, Palimpsest, and adapters become the layer for working with agent teams.",
+      "title": "Personal tools layer",
+      "publicSummary": "Agent Ops, Switchboard, Palimpsest, and adapters become the working layer.",
       "confidence": "current workspace evidence",
       "confirmationStatus": "confirmed"
     }
@@ -202,7 +206,7 @@
     {
       "id": "grade-10",
       "title": "Grade 10 CBSE",
-      "institution": "Delhi Public School Bangalore-North",
+      "institution": "DPS",
       "year": "2014",
       "publicSummary": "Secondary school credential metadata.",
       "confirmationStatus": "confirmed",
@@ -210,17 +214,17 @@
     },
     {
       "id": "grade-12",
-      "title": "Grade 12 / Pre-University",
-      "institution": "The Amaatra Academy PU College",
+      "title": "Grade 12",
+      "institution": "Amaatra",
       "year": "2016",
-      "publicSummary": "Pre-university credential metadata.",
+      "publicSummary": "High school credential metadata.",
       "confirmationStatus": "confirmed",
       "privacyBoundary": "Subject marks and raw certificate details stay private."
     },
     {
       "id": "bba",
       "title": "Bachelor of Business Administration",
-      "institution": "PES University",
+      "institution": "PESU",
       "year": "2020",
       "publicSummary": "Business degree metadata.",
       "confirmationStatus": "confirmed",
@@ -229,7 +233,7 @@
     {
       "id": "mba",
       "title": "Master of Business Administration",
-      "institution": "Indiana University of Pennsylvania",
+      "institution": "IUP",
       "year": "2021",
       "publicSummary": "MBA degree metadata.",
       "confirmationStatus": "confirmed",
@@ -238,38 +242,51 @@
   ],
   "proofItems": [
     {
+      "id": "bba",
+      "title": "BBA Degree Certificate",
+      "issuer": "PESU",
+      "year": "2020",
+      "track": "education",
+      "publicSummary": "Bachelor of Business Administration degree proof.",
+      "confirmationStatus": "confirmed",
+      "redactionNote": "SRN, QR, photo, document number, and CGPA line are redacted.",
+      "imageHref": "/certificates/bba-certificate-redacted.webp"
+    },
+    {
+      "id": "mba",
+      "title": "MBA Degree Certificate",
+      "issuer": "IUP",
+      "year": "2021",
+      "track": "education",
+      "publicSummary": "Master of Business Administration degree proof.",
+      "confirmationStatus": "confirmed",
+      "redactionNote": "Public degree preview.",
+      "imageHref": "/certificates/mba-certificate.webp"
+    },
+    {
       "id": "aiff-d",
       "title": "AIFF D Coaching Certificate",
       "issuer": "All India Football Federation",
       "year": "2021",
       "track": "football",
-      "publicSummary": "Football coaching proof is represented as redacted metadata only.",
+      "publicSummary": "Football coaching proof.",
       "confirmationStatus": "confirmed",
-      "redactionNote": "Certificate number and raw scan stay private."
-    },
-    {
-      "id": "education-proof",
-      "title": "Education Proof Wall",
-      "issuer": "School and university records",
-      "year": "2014-2021",
-      "track": "education",
-      "publicSummary": "Credential names and issuers can be shown without marks, IDs, transcripts, or scans.",
-      "confirmationStatus": "confirmed",
-      "redactionNote": "Raw private records stay out."
+      "redactionNote": "Certificate number and session photos are excluded or redacted.",
+      "imageHref": "/certificates/aiff-d-coaching-redacted.webp"
     }
   ],
   "resumeHighlights": [
     {
       "id": "bba-pes",
       "title": "BBA",
-      "detail": "PES University",
+      "detail": "PESU",
       "year": "2020",
       "kind": "education"
     },
     {
       "id": "mba-iup",
       "title": "MBA",
-      "detail": "Indiana University of Pennsylvania",
+      "detail": "IUP",
       "year": "2021",
       "kind": "education"
     },
@@ -279,13 +296,6 @@
       "detail": "Football coaching credential",
       "year": "2021",
       "kind": "football"
-    },
-    {
-      "id": "ai-chatbots",
-      "title": "AI chatbots",
-      "detail": "Gemini, OpenAI, RAG, LLM query, and chat API experiments",
-      "year": "2024-2026",
-      "kind": "ai"
     },
     {
       "id": "eox-vantage",
@@ -300,13 +310,6 @@
       "detail": "Current role",
       "year": "2024-current",
       "kind": "work"
-    },
-    {
-      "id": "agentic-suite",
-      "title": "Agentic suite",
-      "detail": "Agent Ops, Switchboard, Palimpsest, public adapter gate",
-      "year": "2026",
-      "kind": "systems"
     }
   ],
   "aiWork": [

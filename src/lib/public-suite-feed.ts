@@ -53,6 +53,7 @@ export type PublicTimelineItem = {
   date: string;
   lane: string;
   title: string;
+  displayDetail?: string;
   publicSummary: string;
   confidence: string;
   confirmationStatus: PublicConfirmationStatus;
@@ -77,6 +78,7 @@ export type PublicProofItem = {
   publicSummary: string;
   confirmationStatus: PublicConfirmationStatus;
   redactionNote: string;
+  imageHref?: string;
 };
 
 export type PublicResumeHighlight = {

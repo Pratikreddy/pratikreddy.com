@@ -113,6 +113,7 @@ function publicTimeline(seed) {
     date: String(item.date || ""),
     lane: String(item.lane || item.track || "timeline"),
     title: String(item.title || ""),
+    displayDetail: item.displayDetail ? String(item.displayDetail) : undefined,
     publicSummary: String(item.publicSummary || item.summary || ""),
     confidence: String(item.confidence || item.sourceStatus || "metadata"),
     confirmationStatus: confirmationStatus(item),
@@ -157,6 +158,7 @@ function publicProofItems(seed) {
       publicSummary: String(item.publicSummary || item.summary || ""),
       confirmationStatus: confirmationStatus(item),
       redactionNote: String(item.redactionNote || item.publicNote || "Raw details stay private."),
+      imageHref: item.imageHref ? String(item.imageHref) : undefined,
     }));
   }
 
@@ -170,6 +172,7 @@ function publicProofItems(seed) {
     publicSummary: String(item.summary || ""),
     confirmationStatus: confirmationStatus(item),
     redactionNote: String(item.publicNote || "Raw details stay private."),
+    imageHref: item.imageHref ? String(item.imageHref) : undefined,
   }));
 }
 
@@ -253,10 +256,10 @@ function buildFeed() {
     generatedAt,
     identity: {
       name: "Pratik",
-      headline: "Resume, timeline, and agentic systems.",
+      headline: "Resume, timeline, and personal systems.",
       bioShort: "I build systems, adapters, and a public-safe suite layer.",
       bioLong:
-        "The public site keeps the surface simple: resume signal, timeline milestones, and the agentic suite layer.",
+        "The public site keeps the surface simple: resume signal, timeline milestones, and the personal suite layer.",
       locationPublic: "Bangalore / systems work",
       links: [
         { label: "GitHub pratikreddy9", href: "https://github.com/pratikreddy9" },

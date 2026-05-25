@@ -1,21 +1,21 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { PublicAiWork, PublicResumeHighlight, PublicTimelineItem } from "@/lib/public-suite-feed";
+import type { PublicResumeHighlight, PublicSuiteLane, PublicTimelineItem } from "@/lib/public-suite-feed";
 
 type ChatWidgetProps = {
   resumeHighlights: PublicResumeHighlight[];
   timeline: PublicTimelineItem[];
-  aiWork: PublicAiWork[];
+  suiteLanes: PublicSuiteLane[];
 };
 
 const starterPrompts = [
   { id: "resume", label: "Resume" },
   { id: "timeline", label: "Timeline" },
-  { id: "ai", label: "AI work" },
+  { id: "suite", label: "Suite" },
 ] as const;
 
-export function ChatWidget({ resumeHighlights, timeline, aiWork }: ChatWidgetProps) {
+export function ChatWidget({ resumeHighlights, timeline, suiteLanes }: ChatWidgetProps) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<(typeof starterPrompts)[number]["id"]>("resume");
 
@@ -27,10 +27,10 @@ export function ChatWidget({ resumeHighlights, timeline, aiWork }: ChatWidgetPro
         .join(" | ");
     }
 
-    if (active === "ai") {
-      return aiWork
-        .slice(0, 4)
-        .map((item) => item.title)
+    if (active === "suite") {
+      return suiteLanes
+        .slice(0, 7)
+        .map((item) => item.name)
         .join(" | ");
     }
 
@@ -38,22 +38,28 @@ export function ChatWidget({ resumeHighlights, timeline, aiWork }: ChatWidgetPro
       .slice(0, 5)
       .map((item) => `${item.title}: ${item.detail}`)
       .join(" | ");
-  }, [active, aiWork, resumeHighlights, timeline]);
+  }, [active, resumeHighlights, suiteLanes, timeline]);
 
   return (
     <div className={`chat-widget${open ? " is-open" : ""}`}>
       {open ? (
         <section className="chat-panel" aria-label="Pratik site character chat">
           <div className="chat-head">
-            <div>
-              <span>PSR</span>
-              <strong>Ask</strong>
+            <div className="chat-title">
+              <img className="chat-avatar" src="/whis/whis-icon.png" alt="" />
+              <div>
+                <span>Whis</span>
+                <strong>Ask</strong>
+              </div>
             </div>
             <button type="button" onClick={() => setOpen(false)} aria-label="Close chat">
               x
             </button>
           </div>
-          <p className="chat-bubble">{answer}</p>
+          <div className="chat-response">
+            <img className="whis-avatar" src="/whis/whis-icon.png" alt="" />
+            <p className="chat-bubble">{answer}</p>
+          </div>
           <div className="chat-actions" aria-label="Starter questions">
             {starterPrompts.map((prompt) => (
               <button
@@ -69,7 +75,7 @@ export function ChatWidget({ resumeHighlights, timeline, aiWork }: ChatWidgetPro
         </section>
       ) : null}
       <button className="chat-launcher" type="button" onClick={() => setOpen((value) => !value)} aria-label="Open chat">
-        <span>PSR</span>
+        <img src="/whis/whis-icon.png" alt="" />
       </button>
     </div>
   );
