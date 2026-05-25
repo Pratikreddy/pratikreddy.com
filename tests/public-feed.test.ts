@@ -28,7 +28,16 @@ describe("public suite feed", () => {
 
     expect(feed.schemaVersion).toBe("public-suite-feed-v1");
     expect(feed.identity.name).toBe("Pratik S Reddy");
+    expect(feed.identity.bioShort).toContain("education");
     expect(feed.privacy.mode).toBe("metadata_only");
+    expect(feed.lifeTracks.map((track) => track.id)).toEqual(
+      expect.arrayContaining(["education", "football", "clothing", "farming", "systems"]),
+    );
+    expect(feed.timeline.some((item) => item.title.includes("Bachelor"))).toBe(true);
+    expect(feed.education.map((item) => item.institution)).toEqual(
+      expect.arrayContaining(["PES University", "Indiana University of Pennsylvania"]),
+    );
+    expect(feed.proofItems.length).toBeGreaterThanOrEqual(1);
     expect(feed.suiteLanes.map((lane) => lane.id)).toEqual(
       expect.arrayContaining([
         "agent-ops",

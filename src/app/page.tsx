@@ -1,27 +1,27 @@
-import { readPublicSuiteFeed, type PublicStatusState } from "@/lib/public-suite-feed";
+import {
+  readPublicSuiteFeed,
+  type PublicConfirmationStatus,
+  type PublicStatusState,
+} from "@/lib/public-suite-feed";
 
 function statusClass(state: PublicStatusState) {
   return `status-pill status-${state}`;
 }
 
-const statusOrder: PublicStatusState[] = ["live", "active", "stale", "blocked", "deferred", "unknown"];
+function confirmationClass(state: PublicConfirmationStatus) {
+  return `confirm-pill confirm-${state}`;
+}
+
+function confirmationLabel(state: PublicConfirmationStatus) {
+  if (state === "needs_ceo_confirmation") return "to confirm";
+  if (state === "review_gated") return "review gated";
+  return "confirmed";
+}
 
 export default async function Home() {
   const feed = await readPublicSuiteFeed();
-  const statusCounts = feed.statusStrip.reduce(
-    (counts, item) => {
-      counts[item.state] += 1;
-      return counts;
-    },
-    {
-      live: 0,
-      active: 0,
-      stale: 0,
-      blocked: 0,
-      deferred: 0,
-      unknown: 0,
-    } satisfies Record<PublicStatusState, number>,
-  );
+  const confirmedEducation = feed.education.filter((item) => item.confirmationStatus === "confirmed");
+  const reviewItems = feed.timeline.filter((item) => item.confirmationStatus !== "confirmed");
   const generatedAt = new Date(feed.generatedAt).toLocaleDateString("en-IN", {
     day: "2-digit",
     month: "short",
@@ -30,90 +30,142 @@ export default async function Home() {
 
   return (
     <main>
-      <section className="hero" aria-labelledby="site-title">
-        <div className="hero-inner">
-          <article className="share-preview" aria-label="pratikreddy.com public preview card">
-            <div className="preview-art">
-              <div className="preview-copy">
-                <p>PRATIK S REDDY</p>
-                <h1 id="site-title">
-                  <span>Agentic Systems</span>
-                  <span>+ Operations</span>
-                </h1>
-                <div className="title-rule" aria-hidden="true" />
-              </div>
-              <div className="identity-badge">
-                <img src="https://github.com/Pratikreddy.png" alt="Pratik S Reddy public profile avatar" />
-                <span>public identity</span>
-              </div>
-            </div>
-            <div className="preview-body">
-              <h2>Pratik S Reddy | Agentic Systems + Operations</h2>
-              <p>
-                Portfolio of Pratik S Reddy, building agentic systems, automation, local-first evidence, and operations
-                tools.
-              </p>
-              <div className="domain-row">
-                <a href="https://pratikreddy.com">pratikreddy.com</a>
-                <span>{feed.privacy.mode.replaceAll("_", " ")} gate</span>
-              </div>
-            </div>
-          </article>
-
-          <aside className="hero-panel" aria-label="Public suite summary">
-            <p className="eyebrow">Public suite feed</p>
-            <h2>{feed.identity.headline}</h2>
-            <div className="hero-status-list" aria-label="Freshness summary">
-              {statusOrder
-                .filter((state) => statusCounts[state] > 0)
-                .map((state) => (
-                  <span key={state} className={statusClass(state)}>
-                    {state} {statusCounts[state]}
-                  </span>
-                ))}
-            </div>
-            <p className="boundary-note">
-              The site shows redacted metadata lanes only. Raw private records, transcripts, screenshots, credentials,
-              and finance rows stay blocked.
-            </p>
-            <div className="link-row" aria-label="Public profiles">
+      <section className="life-hero" aria-labelledby="site-title">
+        <div className="hero-shell">
+          <div className="hero-story">
+            <p className="eyebrow">{feed.copyBlocks.heroKicker}</p>
+            <h1 id="site-title">{feed.identity.name}</h1>
+            <p className="hero-title">{feed.copyBlocks.heroTitle}</p>
+            <p className="hero-body">{feed.copyBlocks.heroBody}</p>
+            <div className="hero-links" aria-label="Public links">
               {feed.identity.links.map((link) => (
                 <a key={link.href} href={link.href}>
                   {link.label}
                 </a>
               ))}
             </div>
-            <div className="feed-stamp">
-              <span>Feed generated</span>
-              <strong>{generatedAt}</strong>
+          </div>
+
+          <aside className="identity-panel" aria-label="Public identity summary">
+            <div className="archive-mark" aria-hidden="true">
+              <span>2014</span>
+              <span>2016</span>
+              <span>2020</span>
+              <span>2021</span>
+              <span>2022</span>
+              <span>2026</span>
             </div>
+            <div className="identity-copy">
+              <span>{feed.identity.locationPublic}</span>
+              <strong>{feed.identity.headline}</strong>
+              <p>{feed.copyBlocks.thesis}</p>
+            </div>
+            <dl className="quick-facts">
+              <div>
+                <dt>timeline</dt>
+                <dd>{feed.timeline.length}</dd>
+              </div>
+              <div>
+                <dt>education</dt>
+                <dd>{confirmedEducation.length}</dd>
+              </div>
+              <div>
+                <dt>proof</dt>
+                <dd>{feed.proofItems.length}</dd>
+              </div>
+              <div>
+                <dt>review</dt>
+                <dd>{reviewItems.length}</dd>
+              </div>
+            </dl>
           </aside>
         </div>
       </section>
 
-      <section className="status-band" aria-labelledby="freshness-title">
+      <section className="section-shell" aria-labelledby="tracks-title">
         <div className="section-head">
-          <p className="eyebrow">Live boundary</p>
-          <h2 id="freshness-title">Freshness and gates</h2>
+          <p className="eyebrow">What shaped this</p>
+          <h2 id="tracks-title">Life tracks before project cards.</h2>
         </div>
-        <div className="status-grid">
-          {feed.statusStrip.map((item) => (
-            <article key={item.id} className="status-item">
-              <div className="status-line">
-                <span className={statusClass(item.state)}>{item.state}</span>
-                {item.asOf ? <time dateTime={item.asOf}>{new Date(item.asOf).toLocaleDateString("en-IN")}</time> : null}
+        <div className="track-grid">
+          {feed.lifeTracks.map((track) => (
+            <article key={track.id} className="track-card">
+              <div className="card-topline">
+                <span>{track.label}</span>
+                <span className={confirmationClass(track.confirmationStatus)}>
+                  {confirmationLabel(track.confirmationStatus)}
+                </span>
               </div>
-              <h3>{item.label}</h3>
-              <p>{item.detail}</p>
+              <h3>{track.title}</h3>
+              <p>{track.summary}</p>
+              <em>{track.status}</em>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="content-section" aria-labelledby="suite-title">
+      <section className="timeline-section" aria-labelledby="timeline-title">
+        <div className="section-shell timeline-shell">
+          <div className="section-copy">
+            <p className="eyebrow">Timeline and education</p>
+            <h2 id="timeline-title">The spine starts with the life record.</h2>
+            <p>{feed.copyBlocks.educationIntro}</p>
+          </div>
+          <div className="timeline-list" aria-label="Public timeline">
+            {feed.timeline.map((item) => (
+              <article key={item.id} className="timeline-item">
+                <time>{item.date}</time>
+                <div>
+                  <span className={confirmationClass(item.confirmationStatus)}>
+                    {confirmationLabel(item.confirmationStatus)}
+                  </span>
+                  <h3>{item.title}</h3>
+                  <p>{item.publicSummary}</p>
+                  <em>{item.lane} / {item.confidence}</em>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell split-proof" aria-labelledby="education-title">
+        <div>
+          <p className="eyebrow">Education</p>
+          <h2 id="education-title">Public metadata, not raw documents.</h2>
+          <div className="education-list">
+            {feed.education.map((item) => (
+              <article key={item.id} className="education-row">
+                <span>{item.year}</span>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.institution}</p>
+                  <small>{item.privacyBoundary}</small>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+        <aside className="proof-panel">
+          <p className="eyebrow">Redacted proof</p>
+          {feed.proofItems.map((item) => (
+            <article key={item.id}>
+              <span>{item.year}</span>
+              <h3>{item.title}</h3>
+              <p>{item.issuer}</p>
+              <small>{item.redactionNote}</small>
+            </article>
+          ))}
+        </aside>
+      </section>
+
+      <section className="section-shell" aria-labelledby="suite-title">
         <div className="section-head">
-          <p className="eyebrow">Agentic suite</p>
-          <h2 id="suite-title">Tools, adapters, and public-safe state</h2>
+          <div>
+            <p className="eyebrow">Current operating layer</p>
+            <h2 id="suite-title">The agentic suite supports the archive.</h2>
+          </div>
+          <p className="section-note">{feed.copyBlocks.agenticSuiteIntro}</p>
         </div>
         <div className="suite-grid">
           {feed.suiteLanes.map((lane) => (
@@ -138,7 +190,7 @@ export default async function Home() {
               </div>
               {lane.href ? (
                 <a className="text-link" href={lane.href}>
-                  Open public source
+                  Public source
                 </a>
               ) : null}
             </article>
@@ -146,10 +198,10 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="content-section tone-section" aria-labelledby="projects-title">
+      <section className="section-shell project-section" aria-labelledby="projects-title">
         <div className="section-head">
-          <p className="eyebrow">Public candidates</p>
-          <h2 id="projects-title">Projects cleared for metadata display</h2>
+          <p className="eyebrow">Public work</p>
+          <h2 id="projects-title">Projects are proof, not the whole identity.</h2>
         </div>
         <div className="project-list">
           {feed.projects.map((project) => (
@@ -172,8 +224,9 @@ export default async function Home() {
       <section className="privacy-band" aria-labelledby="privacy-title">
         <div>
           <p className="eyebrow">Public data contract</p>
-          <h2 id="privacy-title">Metadata-only adapter</h2>
-          <p>{feed.privacy.summary}</p>
+          <h2 id="privacy-title">Metadata-only boundary</h2>
+          <p>{feed.copyBlocks.privacyIntro}</p>
+          <small>Feed generated {generatedAt}</small>
         </div>
         <div className="blocked-list" aria-label="Blocked source classes">
           {feed.privacy.forbiddenClasses.map((item) => (

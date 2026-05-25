@@ -1,9 +1,12 @@
 {
   "schemaVersion": "public-suite-feed-v1",
-  "generatedAt": "2026-05-25T07:34:35.676Z",
+  "generatedAt": "2026-05-25T08:01:00.816Z",
   "identity": {
     "name": "Pratik S Reddy",
-    "headline": "Builder of local-first AI, automation, evidence, and agentic operating systems.",
+    "headline": "Personal timeline, evidence archive, and agentic systems builder.",
+    "bioShort": "I build systems from the material of my own life: education, football, clothing experiments, farming notes, work, code, and evidence tools.",
+    "bioLong": "This public site is a curated version of the timeline: what I learned, what I tried, what I built, and what is still being shaped. The private records stay local; the public layer shows only approved metadata and boundaries.",
+    "locationPublic": "Bangalore / systems work",
     "links": [
       {
         "label": "GitHub pratikreddy9",
@@ -18,6 +21,15 @@
         "href": "https://x.com/pratikredy"
       }
     ]
+  },
+  "copyBlocks": {
+    "heroKicker": "Pratik S Reddy / life timeline / public archive",
+    "heroTitle": "A personal archive for the things I learned, tried, built, and kept shaping.",
+    "heroBody": "I build systems from the material of my own life: school, football, clothing experiments, farming notes, work, code, and the tools that help keep all of it honest.",
+    "thesis": "This site is not a project dump. It is the public version of a timeline: what I learned, what I tried, what I built, and what is still being shaped.",
+    "educationIntro": "From school in Bangalore to business education and an MBA, the public story is about direction and proof, not marks, scans, or private documents.",
+    "agenticSuiteIntro": "The agentic suite is the current operating layer around that story: Agent Ops for instructions, Switchboard for source state, Palimpsest for evidence, and adapters for what can safely become public.",
+    "privacyIntro": "The public site shows selected metadata only. Raw marks, IDs, scans, offer letters, finance rows, meeting media, and private notes stay out."
   },
   "privacy": {
     "mode": "metadata_only",
@@ -41,7 +53,7 @@
       "label": "Alive adapter brick",
       "state": "live",
       "detail": "Generated public metadata feed from allowlisted local evidence.",
-      "asOf": "2026-05-25T07:34:35.676Z"
+      "asOf": "2026-05-25T08:01:00.816Z"
     },
     {
       "id": "switchboard",
@@ -68,6 +80,200 @@
       "label": "Vercel deploy",
       "state": "deferred",
       "detail": "GitHub import and custom domain binding happen after repo push."
+    }
+  ],
+  "lifeTracks": [
+    {
+      "id": "education",
+      "title": "Education",
+      "label": "School, BBA, MBA",
+      "status": "confirmed metadata",
+      "summary": "A dated education spine from school in Bangalore through PES University and an MBA, with private marks and documents excluded.",
+      "confirmationStatus": "confirmed"
+    },
+    {
+      "id": "football",
+      "title": "Football",
+      "label": "Playing and coaching",
+      "status": "confirmed metadata",
+      "summary": "Football appears as coaching proof, field-session work, and the discipline of tracking progress session by session.",
+      "confirmationStatus": "confirmed"
+    },
+    {
+      "id": "clothing",
+      "title": "080 / Clothing",
+      "label": "Kit culture and making",
+      "status": "needs image review",
+      "summary": "080 connects t-shirts, sewing, embroidery, football kit culture, and visual experiments into a physical-making lane.",
+      "confirmationStatus": "needs_ceo_confirmation"
+    },
+    {
+      "id": "farming",
+      "title": "Farming",
+      "label": "Mushrooms and saffron",
+      "status": "needs source review",
+      "summary": "Mushroom and saffron notes are part of the life archive, but public copy waits for selected images and approved wording.",
+      "confirmationStatus": "needs_ceo_confirmation"
+    },
+    {
+      "id": "systems",
+      "title": "Systems",
+      "label": "Hardware, data, AI",
+      "status": "high-level only",
+      "summary": "The systems lane covers hardware, local-first AI, automation, dashboards, and evidence tools without exposing private payloads.",
+      "confirmationStatus": "confirmed"
+    }
+  ],
+  "timeline": [
+    {
+      "id": "grade-10",
+      "date": "2014",
+      "lane": "education",
+      "title": "Grade 10",
+      "publicSummary": "Secondary school milestone in Bangalore, shown without marks, IDs, or raw documents.",
+      "confidence": "year-level",
+      "confirmationStatus": "confirmed"
+    },
+    {
+      "id": "grade-12",
+      "date": "2016",
+      "lane": "education",
+      "title": "Grade 12 / Pre-University",
+      "publicSummary": "Pre-university education milestone, kept to public wording only.",
+      "confidence": "year-level",
+      "confirmationStatus": "confirmed"
+    },
+    {
+      "id": "bba",
+      "date": "2017-2020",
+      "lane": "education",
+      "title": "Bachelor of Business Administration",
+      "publicSummary": "Business education period at PES University.",
+      "confidence": "year-level",
+      "confirmationStatus": "confirmed"
+    },
+    {
+      "id": "mba",
+      "date": "2020-2021",
+      "lane": "education",
+      "title": "Master of Business Administration",
+      "publicSummary": "MBA period recorded in the credential evidence layer.",
+      "confidence": "year-level",
+      "confirmationStatus": "confirmed"
+    },
+    {
+      "id": "aiff-d",
+      "date": "2021",
+      "lane": "football",
+      "title": "AIFF D coaching certificate",
+      "publicSummary": "Football coaching proof exists; certificate numbers and scans stay private.",
+      "confidence": "year-level",
+      "confirmationStatus": "confirmed"
+    },
+    {
+      "id": "080-making",
+      "date": "2022",
+      "lane": "clothing",
+      "title": "080, sewing, and kit culture",
+      "publicSummary": "A making lane connecting football, clothing, t-shirts, sewing, and embroidery.",
+      "confidence": "inferred",
+      "confirmationStatus": "needs_ceo_confirmation"
+    },
+    {
+      "id": "farming-track",
+      "date": "2022",
+      "lane": "farming",
+      "title": "Mushrooms and saffron notes",
+      "publicSummary": "Farming experiments are tracked, with public details waiting for selected media and approved wording.",
+      "confidence": "inferred",
+      "confirmationStatus": "needs_ceo_confirmation"
+    },
+    {
+      "id": "current-suite",
+      "date": "2026",
+      "lane": "systems",
+      "title": "Evidence and agentic suite",
+      "publicSummary": "Agent Ops, Switchboard, Palimpsest, and adapters become the operating layer for the public archive.",
+      "confidence": "current workspace evidence",
+      "confirmationStatus": "confirmed"
+    }
+  ],
+  "education": [
+    {
+      "id": "grade-10",
+      "title": "Grade 10 CBSE",
+      "institution": "Delhi Public School Bangalore-North",
+      "year": "2014",
+      "publicSummary": "Secondary school credential metadata.",
+      "confirmationStatus": "confirmed",
+      "privacyBoundary": "Marks, register numbers, and raw certificate details stay private."
+    },
+    {
+      "id": "grade-12",
+      "title": "Grade 12 / Pre-University",
+      "institution": "The Amaatra Academy PU College",
+      "year": "2016",
+      "publicSummary": "Pre-university credential metadata.",
+      "confirmationStatus": "confirmed",
+      "privacyBoundary": "Subject marks and raw certificate details stay private."
+    },
+    {
+      "id": "bba",
+      "title": "Bachelor of Business Administration",
+      "institution": "PES University",
+      "year": "2020",
+      "publicSummary": "Business degree metadata.",
+      "confirmationStatus": "confirmed",
+      "privacyBoundary": "Transcripts, marks, and raw scans stay private."
+    },
+    {
+      "id": "mba",
+      "title": "Master of Business Administration",
+      "institution": "Indiana University of Pennsylvania",
+      "year": "2021",
+      "publicSummary": "MBA degree metadata.",
+      "confirmationStatus": "confirmed",
+      "privacyBoundary": "Raw certificate scans and identifiers stay private."
+    }
+  ],
+  "proofItems": [
+    {
+      "id": "aiff-d",
+      "title": "AIFF D Coaching Certificate",
+      "issuer": "All India Football Federation",
+      "year": "2021",
+      "track": "football",
+      "publicSummary": "Football coaching proof is represented as redacted metadata only.",
+      "confirmationStatus": "confirmed",
+      "redactionNote": "Certificate number and raw scan stay private."
+    },
+    {
+      "id": "education-proof",
+      "title": "Education Proof Wall",
+      "issuer": "School and university records",
+      "year": "2014-2021",
+      "track": "education",
+      "publicSummary": "Credential names and issuers can be shown without marks, IDs, transcripts, or scans.",
+      "confirmationStatus": "confirmed",
+      "redactionNote": "Only public metadata is emitted."
+    }
+  ],
+  "mediaCandidates": [
+    {
+      "id": "football-coaching",
+      "title": "Football coaching media",
+      "track": "football",
+      "publicStatus": "available_after_review",
+      "rightsStatus": "needs rights review",
+      "facePrivacyStatus": "needs participant privacy review"
+    },
+    {
+      "id": "080-clothing",
+      "title": "080 and clothing media",
+      "track": "clothing",
+      "publicStatus": "available_after_review",
+      "rightsStatus": "needs rights review",
+      "facePrivacyStatus": "review before public use"
     }
   ],
   "suiteLanes": [

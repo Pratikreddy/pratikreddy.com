@@ -84,6 +84,130 @@ function publicProjects(seed) {
     }));
 }
 
+function confirmationStatus(entry) {
+  const explicit = String(entry?.confirmationStatus || "");
+  if (["confirmed", "needs_ceo_confirmation", "review_gated"].includes(explicit)) return explicit;
+  const exposure = String(entry?.exposure || "").toLowerCase();
+  const sourceStatus = String(entry?.sourceStatus || "").toLowerCase();
+  if (exposure === "private_default" || sourceStatus.includes("evidence pending")) return "needs_ceo_confirmation";
+  if (exposure.includes("review")) return "review_gated";
+  return "confirmed";
+}
+
+function publicLifeTracks(seed) {
+  const tracks = Array.isArray(seed.lifeTracks) ? seed.lifeTracks : Array.isArray(seed.tracks) ? seed.tracks : [];
+  return tracks.slice(0, 8).map((track) => ({
+    id: String(track.id),
+    title: String(track.title),
+    label: String(track.label || track.status || ""),
+    status: String(track.status || track.sourceStatus || "public metadata"),
+    summary: String(track.summary || ""),
+    confirmationStatus: confirmationStatus(track),
+  }));
+}
+
+function publicTimeline(seed) {
+  const timeline = Array.isArray(seed.timeline) ? seed.timeline : [];
+  return timeline.slice(0, 14).map((item) => ({
+    id: String(item.id || `${item.date}-${item.title}`.toLowerCase().replace(/[^a-z0-9]+/g, "-")),
+    date: String(item.date || ""),
+    lane: String(item.lane || item.track || "timeline"),
+    title: String(item.title || ""),
+    publicSummary: String(item.publicSummary || item.summary || ""),
+    confidence: String(item.confidence || item.sourceStatus || "metadata"),
+    confirmationStatus: confirmationStatus(item),
+  }));
+}
+
+function publicEducation(seed) {
+  if (Array.isArray(seed.education)) {
+    return seed.education.map((item) => ({
+      id: String(item.id),
+      title: String(item.title),
+      institution: String(item.institution || item.issuer || ""),
+      year: String(item.year || item.date || ""),
+      publicSummary: String(item.publicSummary || item.summary || ""),
+      confirmationStatus: confirmationStatus(item),
+      privacyBoundary: String(item.privacyBoundary || item.publicNote || "Raw private details stay private."),
+    }));
+  }
+
+  const certs = Array.isArray(seed.certifications) ? seed.certifications : [];
+  return certs
+    .filter((item) => item.track === "education")
+    .map((item) => ({
+      id: String(item.id),
+      title: String(item.title),
+      institution: String(item.issuer || ""),
+      year: String(item.date || ""),
+      publicSummary: String(item.summary || ""),
+      confirmationStatus: confirmationStatus(item),
+      privacyBoundary: String(item.publicNote || "Raw private details stay private."),
+    }));
+}
+
+function publicProofItems(seed) {
+  if (Array.isArray(seed.proofItems)) {
+    return seed.proofItems.map((item) => ({
+      id: String(item.id),
+      title: String(item.title),
+      issuer: String(item.issuer || ""),
+      year: String(item.year || item.date || ""),
+      track: String(item.track || "proof"),
+      publicSummary: String(item.publicSummary || item.summary || ""),
+      confirmationStatus: confirmationStatus(item),
+      redactionNote: String(item.redactionNote || item.publicNote || "Raw details stay private."),
+    }));
+  }
+
+  const certs = Array.isArray(seed.certifications) ? seed.certifications : [];
+  return certs.slice(0, 8).map((item) => ({
+    id: String(item.id),
+    title: String(item.title),
+    issuer: String(item.issuer || ""),
+    year: String(item.date || ""),
+    track: String(item.track || "proof"),
+    publicSummary: String(item.summary || ""),
+    confirmationStatus: confirmationStatus(item),
+    redactionNote: String(item.publicNote || "Raw details stay private."),
+  }));
+}
+
+function publicMediaCandidates(seed) {
+  const media = Array.isArray(seed.mediaCandidates) ? seed.mediaCandidates : Array.isArray(seed.media) ? seed.media : [];
+  return media.slice(0, 8).map((item) => ({
+    id: String(item.id),
+    title: String(item.title),
+    track: String(item.track || "media"),
+    publicStatus: item.publicStatus || (String(item.exposure || "").includes("review") ? "available_after_review" : "not_ready"),
+    rightsStatus: String(item.rightsStatus || item.publicNote || "review required"),
+    facePrivacyStatus: String(item.facePrivacyStatus || "review required"),
+  }));
+}
+
+function copyBlocks(seed) {
+  return {
+    heroKicker: String(seed.copyBlocks?.heroKicker || "Pratik S Reddy / life timeline / public archive"),
+    heroTitle: String(
+      seed.copyBlocks?.heroTitle || "A personal archive for the things I learned, tried, built, and kept shaping.",
+    ),
+    heroBody: String(
+      seed.copyBlocks?.heroBody ||
+        "I build systems from school, football, clothing experiments, farming notes, work, code, and evidence tools.",
+    ),
+    thesis: String(seed.copyBlocks?.thesis || "A public timeline first, with the agentic suite as the operating layer."),
+    educationIntro: String(
+      seed.copyBlocks?.educationIntro || "Education is shown as public metadata only; marks and raw documents stay private.",
+    ),
+    agenticSuiteIntro: String(
+      seed.copyBlocks?.agenticSuiteIntro || "Agent Ops, Switchboard, Palimpsest, and adapters support the public archive.",
+    ),
+    privacyIntro: String(
+      seed.copyBlocks?.privacyIntro || "This public feed emits metadata only and blocks raw private records.",
+    ),
+  };
+}
+
 function buildFeed() {
   const generatedAt = new Date().toISOString();
   const foundation = readJson(LOCAL_SOURCES.switchboardFoundation, {});
@@ -114,13 +238,19 @@ function buildFeed() {
     generatedAt,
     identity: {
       name: "Pratik S Reddy",
-      headline: "Builder of local-first AI, automation, evidence, and agentic operating systems.",
+      headline: "Personal timeline, evidence archive, and agentic systems builder.",
+      bioShort:
+        "I build systems from the material of my own life: education, football, clothing experiments, farming notes, work, code, and evidence tools.",
+      bioLong:
+        "This public site is a curated version of the timeline: what I learned, what I tried, what I built, and what is still being shaped. The private records stay local; the public layer shows only approved metadata and boundaries.",
+      locationPublic: "Bangalore / systems work",
       links: [
         { label: "GitHub pratikreddy9", href: "https://github.com/pratikreddy9" },
         { label: "GitHub Pratikreddy", href: "https://github.com/Pratikreddy" },
         { label: "X pratikredy", href: "https://x.com/pratikredy" },
       ],
     },
+    copyBlocks: copyBlocks(seed),
     privacy: {
       mode: "metadata_only",
       summary: "This feed publishes redacted metadata, public-safe project summaries, source freshness, and suite boundaries only.",
@@ -161,6 +291,11 @@ function buildFeed() {
         detail: "GitHub import and custom domain binding happen after repo push.",
       },
     ],
+    lifeTracks: publicLifeTracks(seed),
+    timeline: publicTimeline(seed),
+    education: publicEducation(seed),
+    proofItems: publicProofItems(seed),
+    mediaCandidates: publicMediaCandidates(seed),
     suiteLanes: [
       {
         id: "agent-ops",
