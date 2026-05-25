@@ -4,15 +4,13 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://pratikreddy.com"),
   title: {
-    default: "Pratik S Reddy | Life Timeline + Systems",
-    template: "%s | Pratik S Reddy",
+    default: "Prateek",
+    template: "%s | Prateek",
   },
-  description:
-    "Personal archive for Pratik S Reddy: education, football, 080, farming, systems, and the agentic tools built around that life timeline.",
+  description: "Prateek: resume, timeline, agent suite, and agent teams.",
   openGraph: {
-    title: "Pratik S Reddy | Life Timeline + Systems",
-    description:
-      "A personal archive for education, football, 080, farming, systems, and the public-safe evidence layer around Pratik S Reddy's work.",
+    title: "Prateek",
+    description: "Resume, timeline, agent suite, and agent teams.",
     url: "https://pratikreddy.com",
     siteName: "pratikreddy.com",
     type: "website",
@@ -21,15 +19,14 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Pratik S Reddy | Life Timeline + Systems",
+        alt: "Prateek",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pratik S Reddy | Life Timeline + Systems",
-    description:
-      "A personal archive for education, football, 080, farming, systems, and public-safe evidence.",
+    title: "Prateek",
+    description: "Resume, timeline, agent suite, and agent teams.",
     images: ["/twitter-image"],
   },
 };

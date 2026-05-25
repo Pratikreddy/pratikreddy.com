@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Pratik S Reddy | Life Timeline + Systems";
+export const alt = "Prateek";
 export const size = {
   width: 1200,
   height: 630,
@@ -74,7 +74,7 @@ export default function Image() {
                 letterSpacing: 8,
               }}
             >
-              PRATIK S REDDY
+              PRATEEK
             </div>
             <div
               style={{
@@ -94,8 +94,8 @@ export default function Image() {
                   letterSpacing: 0,
                 }}
               >
-                <span>Life Timeline</span>
-                <span>+ Systems</span>
+                <span>Resume</span>
+                <span>+ Agents</span>
               </div>
               <div
                 style={{
@@ -118,8 +118,8 @@ export default function Image() {
                 fontWeight: 800,
               }}
             >
-              <span>education / football / 080 / systems</span>
-              <span style={{ color: "#31c48d" }}>metadata-only public archive</span>
+              <span>BBA / MBA / EOX / Ayotta</span>
+              <span style={{ color: "#31c48d" }}>agents / teams / swarms</span>
             </div>
           </div>
         </div>

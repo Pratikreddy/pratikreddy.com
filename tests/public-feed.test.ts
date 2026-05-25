@@ -27,8 +27,8 @@ describe("public suite feed", () => {
     const feed = loadFeed();
 
     expect(feed.schemaVersion).toBe("public-suite-feed-v1");
-    expect(feed.identity.name).toBe("Pratik S Reddy");
-    expect(feed.identity.bioShort).toContain("education");
+    expect(feed.identity.name).toBe("Prateek");
+    expect(feed.identity.bioShort).toContain("agents");
     expect(feed.privacy.mode).toBe("metadata_only");
     expect(feed.lifeTracks.map((track) => track.id)).toEqual(
       expect.arrayContaining(["education", "football", "clothing", "farming", "systems"]),

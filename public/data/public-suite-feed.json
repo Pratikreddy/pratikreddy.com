@@ -1,11 +1,11 @@
 {
   "schemaVersion": "public-suite-feed-v1",
-  "generatedAt": "2026-05-25T18:26:13.906Z",
+  "generatedAt": "2026-05-25T18:44:28.437Z",
   "identity": {
-    "name": "Pratik S Reddy",
-    "headline": "Personal timeline, evidence archive, and agentic systems builder.",
-    "bioShort": "I build systems from the material of my own life: education, football, clothing experiments, farming notes, work, code, and evidence tools.",
-    "bioLong": "This public site is a curated version of the timeline: what I learned, what I tried, what I built, and what is still being shaped. The private records stay local; the public layer shows only approved metadata and boundaries.",
+    "name": "Prateek",
+    "headline": "Resume, timeline, and agentic systems.",
+    "bioShort": "I build with agents, teams of agents, and adapters that decide what reaches the public layer.",
+    "bioLong": "The public site keeps the surface simple: resume signal, timeline milestones, and the agentic suite layer.",
     "locationPublic": "Bangalore / systems work",
     "links": [
       {
@@ -23,12 +23,12 @@
     ]
   },
   "copyBlocks": {
-    "heroKicker": "Pratik S Reddy / life timeline / public archive",
-    "heroTitle": "A personal archive for the things I learned, tried, built, and kept shaping.",
-    "heroBody": "I build systems from the material of my own life: school, football, clothing experiments, farming notes, work, code, and the tools that help keep all of it honest.",
-    "thesis": "This site is not a project dump. It is the public version of a timeline: what I learned, what I tried, what I built, and what is still being shaped.",
-    "educationIntro": "From school in Bangalore to business education and an MBA, the public story is about direction and proof, not marks, scans, or private documents.",
-    "agenticSuiteIntro": "The agentic suite is the current operating layer around that story: Agent Ops for instructions, Switchboard for source state, Palimpsest for evidence, and adapters for what can safely become public.",
+    "heroKicker": "Prateek",
+    "heroTitle": "Resume, timeline, agents.",
+    "heroBody": "BBA, MBA, work, code, and an agentic suite for teaming agents.",
+    "thesis": "Agents, teams, and swarms need a practical operating layer.",
+    "educationIntro": "BBA and MBA.",
+    "agenticSuiteIntro": "Agent Ops, Switchboard, Palimpsest, and adapters are my current layer for working with agent teams.",
     "privacyIntro": "The public site shows selected metadata only. Raw marks, IDs, scans, offer letters, finance rows, meeting media, and private notes stay out."
   },
   "privacy": {
@@ -53,7 +53,7 @@
       "label": "Alive adapter brick",
       "state": "live",
       "detail": "Generated public metadata feed from allowlisted local evidence.",
-      "asOf": "2026-05-25T18:26:13.906Z"
+      "asOf": "2026-05-25T18:44:28.437Z"
     },
     {
       "id": "switchboard",
@@ -88,7 +88,7 @@
       "title": "Education",
       "label": "School, BBA, MBA",
       "status": "confirmed metadata",
-      "summary": "A dated education spine from school in Bangalore through PES University and an MBA, with private marks and documents excluded.",
+      "summary": "Education milestones from school in Bangalore through PES University and an MBA, with private marks and documents excluded.",
       "confirmationStatus": "confirmed"
     },
     {
@@ -193,7 +193,7 @@
       "date": "2026",
       "lane": "systems",
       "title": "Evidence and agentic suite",
-      "publicSummary": "Agent Ops, Switchboard, Palimpsest, and adapters become the operating layer for the public archive.",
+      "publicSummary": "Agent Ops, Switchboard, Palimpsest, and adapters become the layer for working with agent teams.",
       "confidence": "current workspace evidence",
       "confirmationStatus": "confirmed"
     }
@@ -255,7 +255,7 @@
       "track": "education",
       "publicSummary": "Credential names and issuers can be shown without marks, IDs, transcripts, or scans.",
       "confirmationStatus": "confirmed",
-      "redactionNote": "Only public metadata is emitted."
+      "redactionNote": "Raw private records stay out."
     }
   ],
   "resumeHighlights": [
@@ -286,6 +286,20 @@
       "detail": "Gemini, OpenAI, RAG, LLM query, and chat API experiments",
       "year": "2024-2026",
       "kind": "ai"
+    },
+    {
+      "id": "eox-vantage",
+      "title": "EOX Vantage",
+      "detail": "Work milestone",
+      "year": "2023",
+      "kind": "work"
+    },
+    {
+      "id": "ayotta",
+      "title": "Ayotta",
+      "detail": "Work milestone",
+      "year": "2024-2025",
+      "kind": "work"
     },
     {
       "id": "agentic-suite",

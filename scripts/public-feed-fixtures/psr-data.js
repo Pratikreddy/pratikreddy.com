@@ -1,15 +1,13 @@
 window.PSR_DATA = {
   copyBlocks: {
-    heroKicker: "Pratik S Reddy / life timeline / public archive",
-    heroTitle: "A personal archive for the things I learned, tried, built, and kept shaping.",
+    heroKicker: "Prateek",
+    heroTitle: "Resume, timeline, agents.",
     heroBody:
-      "I build systems from the material of my own life: school, football, clothing experiments, farming notes, work, code, and the tools that help keep all of it honest.",
-    thesis:
-      "This site is not a project dump. It is the public version of a timeline: what I learned, what I tried, what I built, and what is still being shaped.",
-    educationIntro:
-      "From school in Bangalore to business education and an MBA, the public story is about direction and proof, not marks, scans, or private documents.",
+      "BBA, MBA, work, code, and an agentic suite for teaming agents.",
+    thesis: "Agents, teams, and swarms need a practical operating layer.",
+    educationIntro: "BBA and MBA.",
     agenticSuiteIntro:
-      "The agentic suite is the current operating layer around that story: Agent Ops for instructions, Switchboard for source state, Palimpsest for evidence, and adapters for what can safely become public.",
+      "Agent Ops, Switchboard, Palimpsest, and adapters are my current layer for working with agent teams.",
     privacyIntro:
       "The public site shows selected metadata only. Raw marks, IDs, scans, offer letters, finance rows, meeting media, and private notes stay out.",
   },
@@ -21,7 +19,7 @@ window.PSR_DATA = {
       status: "confirmed metadata",
       confirmationStatus: "confirmed",
       summary:
-        "A dated education spine from school in Bangalore through PES University and an MBA, with private marks and documents excluded.",
+        "Education milestones from school in Bangalore through PES University and an MBA, with private marks and documents excluded.",
     },
     {
       id: "football",
@@ -129,7 +127,7 @@ window.PSR_DATA = {
       date: "2026",
       lane: "systems",
       title: "Evidence and agentic suite",
-      publicSummary: "Agent Ops, Switchboard, Palimpsest, and adapters become the operating layer for the public archive.",
+      publicSummary: "Agent Ops, Switchboard, Palimpsest, and adapters become the layer for working with agent teams.",
       confidence: "current workspace evidence",
       confirmationStatus: "confirmed",
     },
@@ -191,7 +189,7 @@ window.PSR_DATA = {
       track: "education",
       publicSummary: "Credential names and issuers can be shown without marks, IDs, transcripts, or scans.",
       confirmationStatus: "confirmed",
-      redactionNote: "Only public metadata is emitted.",
+      redactionNote: "Raw private records stay out.",
     },
   ],
   resumeHighlights: [
@@ -222,6 +220,20 @@ window.PSR_DATA = {
       detail: "Gemini, OpenAI, RAG, LLM query, and chat API experiments",
       year: "2024-2026",
       kind: "ai",
+    },
+    {
+      id: "eox-vantage",
+      title: "EOX Vantage",
+      detail: "Work milestone",
+      year: "2023",
+      kind: "work",
+    },
+    {
+      id: "ayotta",
+      title: "Ayotta",
+      detail: "Work milestone",
+      year: "2024-2025",
+      kind: "work",
     },
     {
       id: "agentic-suite",

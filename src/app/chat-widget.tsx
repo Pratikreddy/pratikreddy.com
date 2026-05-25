@@ -47,7 +47,7 @@ export function ChatWidget({ resumeHighlights, timeline, aiWork }: ChatWidgetPro
           <div className="chat-head">
             <div>
               <span>PSR</span>
-              <strong>Ask the archive</strong>
+              <strong>Ask</strong>
             </div>
             <button type="button" onClick={() => setOpen(false)} aria-label="Close chat">
               x
@@ -66,7 +66,6 @@ export function ChatWidget({ resumeHighlights, timeline, aiWork }: ChatWidgetPro
               </button>
             ))}
           </div>
-          <small>No live API. Public-safe site metadata only.</small>
         </section>
       ) : null}
       <button className="chat-launcher" type="button" onClick={() => setOpen((value) => !value)} aria-label="Open chat">

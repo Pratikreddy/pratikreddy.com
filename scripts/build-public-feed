@@ -208,20 +208,17 @@ function publicMediaCandidates(seed) {
 
 function copyBlocks(seed) {
   return {
-    heroKicker: String(seed.copyBlocks?.heroKicker || "Pratik S Reddy / life timeline / public archive"),
-    heroTitle: String(
-      seed.copyBlocks?.heroTitle || "A personal archive for the things I learned, tried, built, and kept shaping.",
-    ),
+    heroKicker: String(seed.copyBlocks?.heroKicker || "Prateek"),
+    heroTitle: String(seed.copyBlocks?.heroTitle || "Resume, timeline, agents."),
     heroBody: String(
       seed.copyBlocks?.heroBody ||
-        "I build systems from school, football, clothing experiments, farming notes, work, code, and evidence tools.",
+        "BBA, MBA, work, code, and an agentic suite for teaming agents.",
     ),
-    thesis: String(seed.copyBlocks?.thesis || "A public timeline first, with the agentic suite as the operating layer."),
-    educationIntro: String(
-      seed.copyBlocks?.educationIntro || "Education is shown as public metadata only; marks and raw documents stay private.",
-    ),
+    thesis: String(seed.copyBlocks?.thesis || "Agents, teams, and swarms need a practical operating layer."),
+    educationIntro: String(seed.copyBlocks?.educationIntro || "BBA and MBA."),
     agenticSuiteIntro: String(
-      seed.copyBlocks?.agenticSuiteIntro || "Agent Ops, Switchboard, Palimpsest, and adapters support the public archive.",
+      seed.copyBlocks?.agenticSuiteIntro ||
+        "Agent Ops, Switchboard, Palimpsest, and adapters are my current layer for working with agent teams.",
     ),
     privacyIntro: String(
       seed.copyBlocks?.privacyIntro || "This public feed emits metadata only and blocks raw private records.",
@@ -258,12 +255,11 @@ function buildFeed() {
     schemaVersion: "public-suite-feed-v1",
     generatedAt,
     identity: {
-      name: "Pratik S Reddy",
-      headline: "Personal timeline, evidence archive, and agentic systems builder.",
-      bioShort:
-        "I build systems from the material of my own life: education, football, clothing experiments, farming notes, work, code, and evidence tools.",
+      name: "Prateek",
+      headline: "Resume, timeline, and agentic systems.",
+      bioShort: "I build with agents, teams of agents, and adapters that decide what reaches the public layer.",
       bioLong:
-        "This public site is a curated version of the timeline: what I learned, what I tried, what I built, and what is still being shaped. The private records stay local; the public layer shows only approved metadata and boundaries.",
+        "The public site keeps the surface simple: resume signal, timeline milestones, and the agentic suite layer.",
       locationPublic: "Bangalore / systems work",
       links: [
         { label: "GitHub pratikreddy9", href: "https://github.com/pratikreddy9" },
