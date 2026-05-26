@@ -12,8 +12,10 @@
   --scene-progress: 0;
   --scene-angle: 132deg;
   --scene-y: 0px;
-  --scene-green: 0.16;
-  --scene-gold: 0.08;
+  --scene-green: 0.12;
+  --scene-gold: 0.06;
+  --page-max: 1320px;
+  --page-pad: 32px;
 }
 
 * {
@@ -78,7 +80,7 @@ main {
     linear-gradient(212deg, transparent 12%, rgba(255, 255, 255, 0.055) 38%, rgba(212, 166, 74, var(--scene-gold)) 54%, transparent 78%),
     linear-gradient(98deg, transparent 4%, rgba(51, 211, 154, 0.08) 48%, transparent 84%);
   filter: blur(1px);
-  opacity: 0.96;
+  opacity: 0.78;
 }
 
 .scroll-scene::after {
@@ -94,15 +96,15 @@ main {
 .rail-section {
   position: relative;
   z-index: 1;
-  width: min(1160px, calc(100vw - 32px));
+  width: min(var(--page-max), calc(100vw - var(--page-pad)));
   margin: 0 auto;
 }
 
 .hero {
-  min-height: 72vh;
+  min-height: 46vh;
   display: flex;
   align-items: center;
-  padding: 32px 0 26px;
+  padding: 26px 0 18px;
 }
 
 .hero-inner {
@@ -110,9 +112,9 @@ main {
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
-  padding: clamp(26px, 7vw, 78px);
+  padding: 46px;
   background:
-    linear-gradient(90deg, rgba(7, 9, 8, 0.96), rgba(7, 9, 8, 0.68)),
+    linear-gradient(90deg, rgba(7, 9, 8, 0.98), rgba(7, 9, 8, 0.76)),
     linear-gradient(var(--scene-angle), rgba(51, 211, 154, 0.28), transparent 58%),
     linear-gradient(135deg, rgba(8, 9, 9, 0.9) 0%, rgba(23, 32, 28, 0.82) 54%, rgba(39, 53, 47, 0.74) 100%);
   backdrop-filter: blur(14px);
@@ -122,7 +124,7 @@ main {
 h1 {
   max-width: 100%;
   margin-bottom: 24px;
-  font-size: 8.4rem;
+  font-size: 7.2rem;
   line-height: 0.78;
   letter-spacing: 0;
   overflow-wrap: anywhere;
@@ -130,7 +132,7 @@ h1 {
 
 h2 {
   margin-bottom: 18px;
-  font-size: 4rem;
+  font-size: 3.35rem;
   line-height: 0.95;
   letter-spacing: 0;
 }
@@ -148,10 +150,10 @@ h2 {
 .band-items a {
   display: inline-flex;
   align-items: center;
-  min-height: 42px;
+  min-height: 46px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  padding: 9px 12px;
+  padding: 10px 14px;
   background: rgba(255, 255, 255, 0.06);
   font-weight: 900;
 }
@@ -188,13 +190,13 @@ h2 {
 }
 
 .rail-section {
-  padding: 46px 0;
+  padding: 28px 0;
 }
 
 .rail-card {
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: rgba(23, 27, 25, 0.88);
+  background: rgba(23, 27, 25, 0.94);
 }
 
 .timeline-card time {
@@ -213,7 +215,7 @@ h2 {
   -webkit-overflow-scrolling: touch;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: rgba(7, 9, 8, 0.64);
+  background: rgba(7, 9, 8, 0.76);
   backdrop-filter: blur(12px);
   scrollbar-color: rgba(51, 211, 154, 0.8) rgba(255, 255, 255, 0.06);
 }
@@ -242,8 +244,8 @@ h2 {
 .rail {
   display: flex;
   width: max-content;
-  gap: 10px;
-  padding: 16px;
+  gap: 12px;
+  padding: 18px;
   animation: rail-move 42s linear infinite;
 }
 
@@ -259,11 +261,12 @@ h2 {
 }
 
 .rail-card {
-  width: 230px;
+  width: 270px;
   flex: 0 0 auto;
   display: grid;
   gap: 8px;
-  padding: 14px;
+  min-height: 96px;
+  padding: 16px;
   scroll-snap-align: start;
 }
 
@@ -284,13 +287,13 @@ h2 {
 }
 
 .timeline-card.has-proof {
-  grid-template-rows: auto minmax(1.6rem, auto) auto 74px;
+  grid-template-rows: auto minmax(1.8rem, auto) auto 96px;
 }
 
 .timeline-proof {
   display: block;
   width: 100%;
-  height: 74px;
+  height: 96px;
   overflow: hidden;
   border: 1px solid rgba(51, 211, 154, 0.34);
   border-radius: 8px;
@@ -521,9 +524,13 @@ h2 {
 }
 
 @media (max-width: 640px) {
+  :root {
+    --page-pad: 24px;
+  }
+
   .hero,
   .rail-section {
-    width: min(100%, calc(100vw - 24px));
+    width: min(100%, calc(100vw - var(--page-pad)));
   }
 
   .hero {
@@ -537,6 +544,10 @@ h2 {
 
   h2 {
     font-size: 2.15rem;
+  }
+
+  .hero-inner {
+    padding: 26px;
   }
 
   .identity-band {
@@ -556,10 +567,139 @@ h2 {
 
   .rail-card {
     width: 210px;
+    min-height: 0;
+    padding: 14px;
+  }
+
+  .timeline-card.has-proof {
+    grid-template-rows: auto minmax(1.6rem, auto) auto 74px;
+  }
+
+  .timeline-proof {
+    height: 74px;
   }
 
   .chat-widget {
     right: 12px;
     bottom: 12px;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --page-max: 1560px;
+    --page-pad: 56px;
+  }
+
+  .hero {
+    min-height: 42vh;
+    padding-top: 34px;
+  }
+
+  .hero-inner {
+    padding: 56px;
+  }
+
+  h1 {
+    font-size: 8.2rem;
+  }
+
+  h2 {
+    font-size: 3.8rem;
+  }
+
+  .rail-card {
+    width: 310px;
+    min-height: 112px;
+    padding: 18px;
+  }
+
+  .timeline-card.has-proof {
+    grid-template-rows: auto minmax(2rem, auto) auto 118px;
+  }
+
+  .timeline-proof {
+    height: 118px;
+  }
+}
+
+@media (min-width: 2200px) {
+  :root {
+    --page-max: 2240px;
+    --page-pad: 96px;
+  }
+
+  .hero {
+    min-height: 38vh;
+    padding-top: 44px;
+  }
+
+  .hero-inner {
+    padding: 64px;
+  }
+
+  h1 {
+    font-size: 9.8rem;
+  }
+
+  h2 {
+    font-size: 4.55rem;
+  }
+
+  .band-items span,
+  .band-items a {
+    min-height: 52px;
+    padding: 12px 16px;
+  }
+
+  .rail-section {
+    padding: 32px 0;
+  }
+
+  .rail-window::before,
+  .rail-window::after {
+    width: 170px;
+  }
+
+  .rail {
+    gap: 14px;
+    padding: 20px;
+  }
+
+  .rail-card {
+    width: 390px;
+    min-height: 136px;
+    padding: 20px;
+  }
+
+  .timeline-card.has-proof {
+    grid-template-rows: auto minmax(2.2rem, auto) auto 152px;
+  }
+
+  .timeline-proof {
+    height: 152px;
+  }
+}
+
+@media (min-width: 3200px) {
+  :root {
+    --page-max: 2800px;
+    --page-pad: 140px;
+  }
+
+  .hero {
+    min-height: 34vh;
+  }
+
+  h1 {
+    font-size: 11rem;
+  }
+
+  h2 {
+    font-size: 5rem;
+  }
+
+  .rail-card {
+    width: 460px;
   }
 }

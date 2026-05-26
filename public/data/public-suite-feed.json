@@ -1,6 +1,6 @@
 {
   "schemaVersion": "public-suite-feed-v1",
-  "generatedAt": "2026-05-25T19:33:59.980Z",
+  "generatedAt": "2026-05-26T05:36:51.355Z",
   "identity": {
     "name": "Pratik",
     "headline": "Resume, timeline, and personal systems.",
@@ -53,7 +53,7 @@
       "label": "Alive adapter brick",
       "state": "live",
       "detail": "Generated public metadata feed from allowlisted local evidence.",
-      "asOf": "2026-05-25T19:33:59.980Z"
+      "asOf": "2026-05-26T05:36:51.355Z"
     },
     {
       "id": "switchboard",
